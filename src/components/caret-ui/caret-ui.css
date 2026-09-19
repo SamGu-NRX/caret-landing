@@ -1,0 +1,305 @@
+/* The product's controls. Geometry from TriggerButton.swift; the glass is the
+   site's `.pill-glass` face, which is the closest thing the web has to the
+   app's ultraThinMaterial, so the product's glass and the page's glass are one
+   material rather than two lookalikes. */
+
+@layer page {
+  .cu-cluster {
+    display: flex;
+    align-items: center;
+    gap: var(--cluster-gap);
+    height: var(--cluster-h);
+    position: relative;
+    z-index: 5;
+  }
+
+  /* AXHelpers flips the panel to the other side of the anchor when it would
+     leave the screen. Same idea, same result. */
+  .cu-cluster[data-flip] {
+    flex-direction: row-reverse;
+  }
+
+  .cu-cluster__sparkle {
+    flex-shrink: 0;
+  }
+
+  /* ----------------------------------------------------------- sparkle */
+
+  .cu-sparkle {
+    display: grid;
+    place-items: center;
+    width: var(--cluster-h);
+    height: var(--cluster-h);
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .cu-sparkle__dot {
+    display: grid;
+    place-items: center;
+    width: var(--sparkle-dot);
+    height: var(--sparkle-dot);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--caret-blue) 96%, transparent);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    transition: background-color 120ms ease, transform 120ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cu-sparkle:hover .cu-sparkle__dot {
+      background: var(--caret-blue);
+    }
+  }
+
+  .cu-sparkle:active .cu-sparkle__dot {
+    transform: scale(0.97);
+  }
+
+  /* ------------------------------------------------------------- strip */
+
+  .cu-strip {
+    display: flex;
+    align-items: stretch;
+    height: var(--cluster-h);
+    border-radius: calc(var(--cluster-h) / 2);
+    overflow: hidden;
+  }
+
+  .cu-strip__cell {
+    display: flex;
+    align-items: center;
+  }
+
+  .cu-strip__sep {
+    width: 1px;
+    height: 14px;
+    background: rgba(23, 24, 28, 0.12);
+    flex-shrink: 0;
+  }
+
+  .cu-chip {
+    /* Current native PinnedStripCell uses a 36px icon cell with 4px side padding. */
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 100%;
+    padding: 0 4px;
+    border: 0;
+    background: none;
+    font-family: var(--font-system);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+  }
+
+  /* The app rounds only the outer end of the first and last cell, so the fill
+     follows the capsule at the ends and stays square between. */
+  .cu-chip[data-first] {
+    border-radius: calc(var(--cluster-h) / 2) 0 0 calc(var(--cluster-h) / 2);
+  }
+
+  .cu-chip[data-last] {
+    border-radius: 0 calc(var(--cluster-h) / 2) calc(var(--cluster-h) / 2) 0;
+  }
+
+  .cu-chip[data-first][data-last] {
+    border-radius: calc(var(--cluster-h) / 2);
+  }
+
+  .cu-chip[data-active] {
+    background: rgba(23, 24, 28, 0.1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cu-chip:hover {
+      background: rgba(23, 24, 28, 0.1);
+    }
+  }
+
+  /* -------------------------------------------------------------- menu */
+
+  .cu-menu {
+    position: absolute;
+    left: calc(var(--cluster-h) + 16px);
+    top: 50%;
+    z-index: 30;
+    width: 240px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 4px;
+    border-radius: var(--radius-md);
+    transform-origin: left center;
+    translate: 0 -50%;
+    animation: cu-menu-in 160ms var(--ease-out) both;
+  }
+
+  .cu-cluster[data-flip] .cu-menu {
+    left: auto;
+    right: calc(var(--cluster-h) + 16px);
+    transform-origin: right center;
+  }
+
+  @keyframes cu-menu-in {
+    from {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+
+  .cu-menu__row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 26px;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 5px;
+    background: none;
+    font-family: var(--font-system);
+    font-size: 13px;
+    color: var(--color-text-primary);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .cu-menu__title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cu-menu__key {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+  }
+
+  .cu-menu__row:hover,
+  .cu-menu__row:focus-visible {
+    background: rgba(23, 24, 28, 0.1);
+  }
+
+  /* ------------------------------------------------------ preview card */
+
+  .cu-card {
+    width: min(340px, 100%);
+    padding: 0.85rem 0.9rem 0.75rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--window-shadow);
+    font-family: var(--font-system);
+    animation: cu-card-in 220ms var(--ease-out) both;
+  }
+
+  @keyframes cu-card-in {
+    from {
+      opacity: 0;
+      translate: 0 8px;
+    }
+  }
+
+  .cu-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .cu-card__title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .cu-card__tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--color-text-tertiary);
+  }
+
+  .cu-card__effect {
+    margin-top: 0.2rem;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+  }
+
+  .cu-card__why {
+    margin-top: 0.6rem;
+    font-size: 12px;
+  }
+
+  .cu-card__why summary {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .cu-card__why summary svg {
+    color: var(--color-text-tertiary);
+    transition: rotate 160ms ease-out;
+  }
+
+  .cu-card__why[open] summary svg {
+    rotate: 90deg;
+  }
+
+  .cu-card__why summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .cu-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+
+  .cu-card__cancel {
+    padding: 0.3rem 0.2rem;
+    border: 0;
+    background: none;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+
+  .cu-card__go {
+    min-height: 30px;
+    padding: 0 0.8rem;
+    border: 0;
+    border-radius: 7px;
+    color: var(--pill-raised-ink);
+    font-size: 12px;
+    font-weight: 550;
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cu-menu,
+    .cu-card {
+      animation: none;
+    }
+
+    .cu-sparkle__dot,
+    .cu-chip {
+      transition: none;
+    }
+  }
+}

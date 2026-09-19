@@ -1,0 +1,27 @@
+/* Layer order first, and it has to be first.
+ *
+ * The two ported files declare `@layer base` and `@layer components` and rely
+ * on something else to order them; in the source that was Tailwind. Here this
+ * line is it. Without a declared order, layers sort by first appearance, and
+ * anything written outside a layer would beat all of them regardless of
+ * specificity. `page` sits last so the layout can override the material it
+ * builds on, which is the only direction that ever needs to happen.
+ *
+ * A bare `@layer` statement is one of the few things allowed before `@import`.
+ */
+@layer base, components, page;
+
+/* Self-hosted, so the page has no third-party font request. Newsreader's
+   `opsz` cut carries the optical-size axis the display type asks for; the
+   italic file is separate because the accent words need it. */
+@import "@fontsource-variable/newsreader/opsz.css";
+@import "@fontsource-variable/newsreader/opsz-italic.css";
+@import "@fontsource-variable/schibsted-grotesk/wght.css";
+
+@import "./styles/tokens.css";
+@import "./components/material.css";
+@import "./components/glass-text/glass-text.css";
+@import "./styles/editorial.css";
+@import "./styles/page.css";
+@import "./components/caret-ui/caret-ui.css";
+@import "./components/mac/mac.css";

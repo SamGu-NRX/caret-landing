@@ -1,0 +1,79 @@
+/* Editorial type. The rules and their reasoning come from the Sillion lander,
+ * src/styles/lander/editorial.css; the layout half of that file is not here,
+ * because this page lays out differently.
+ *
+ * Serif is a display voice, not a body voice. Newsreader at 500 rather than
+ * 400 carries the headings: the 400 roman goes thin the moment it is set large
+ * on a warm ground, and the variable file moves the weight axis rather than
+ * asking the browser to synthesise a bold.
+ *
+ * Serif is confined to display sizes and the italic accent words. Running text
+ * is Schibsted, and the kicker above each heading is quiet sans. A serif
+ * standfirst reads as a pull quote wherever it appears, which means every
+ * section opens with two competing display voices and no plain one.
+ */
+
+@layer components {
+  /* Tracking is -0.016em rather than the -0.025em this started at. Tight
+     negative tracking at 5rem is what makes a headline feel cramped rather
+     than large: the counters close up and the line reads as one dark mass. */
+  .editorial-display {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-optical-sizing: auto;
+    letter-spacing: -0.016em;
+    color: var(--color-text-primary);
+    text-wrap: balance;
+  }
+
+  .editorial-title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-optical-sizing: auto;
+    font-size: clamp(2rem, 3vw + 0.75rem, 2.875rem);
+    line-height: 1.14;
+    letter-spacing: -0.014em;
+    color: var(--color-text-primary);
+    text-wrap: balance;
+  }
+
+  .editorial-accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  /* Deliberately declares no font-family: the standfirst is running text and
+     inherits the body sans. It is a size and a colour, not a voice. */
+  .editorial-standfirst {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    text-wrap: pretty;
+  }
+
+  @media (min-width: 640px) {
+    .editorial-standfirst {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* The department line above each heading. Sans, and small enough that it
+     cannot be mistaken for a sentence. Serif italic was tried here in the
+     source and lost: at 16px it competed with the italic accent inside the
+     heading two lines below, so each section opened on two ornaments. */
+  .section-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.012em;
+    line-height: 1.4;
+    color: var(--color-text-tertiary);
+  }
+
+  .editorial-rule {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 0;
+  }
+}

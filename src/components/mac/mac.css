@@ -1,0 +1,259 @@
+/* Desktop, menu bar, window chrome. The only borders on the page live here,
+   because here they are drawings of real edges rather than decoration. */
+
+@layer page {
+  .mac-stage {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--dusk);
+    box-shadow: var(--window-shadow);
+  }
+
+  .mac-stage__paper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 70%;
+    /* Pixel art. Any smoothing turns the dithering into mud. */
+    image-rendering: pixelated;
+    animation: mac-drift 24s ease-in-out infinite alternate;
+    transform-origin: 65% 65%;
+  }
+
+  /* The wallpaper and the windows move at different rates as the section
+     scrolls, which is the whole of the depth effect. `--stage-p` is written by
+     the section that owns the stage. */
+  .mac-stage__paper[data-parallax] {
+    translate: 0 calc(var(--stage-p, 0) * -40px);
+  }
+
+  .mac-stage__layer[data-parallax] {
+    translate: 0 calc(var(--stage-p, 0) * -16px);
+  }
+
+  @keyframes mac-drift {
+    from {
+      scale: 1;
+    }
+    to {
+      scale: 1.04;
+    }
+  }
+
+  .mac-stage__dim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .mac-stage__layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* ---------------------------------------------------------- menu bar */
+
+  .mac-menubar {
+    position: absolute;
+    inset: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 24px;
+    padding: 0 10px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    font-family: var(--font-system);
+    font-size: 11px;
+    color: rgba(23, 24, 28, 0.85);
+    z-index: 3;
+  }
+
+  .mac-menubar__apple {
+    font-weight: 600;
+  }
+
+  .mac-menubar__menus {
+    color: rgba(23, 24, 28, 0.6);
+  }
+
+  .mac-menubar__spacer {
+    flex: 1;
+  }
+
+  .mac-menubar__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .mac-menubar__status svg {
+    color: rgba(23, 24, 28, 0.85);
+  }
+
+  /* ------------------------------------------------------------ window */
+
+  .mac-window {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--window);
+    box-shadow: var(--window-shadow);
+    font-family: var(--font-system);
+    font-size: 13px;
+    color: var(--color-text-primary);
+  }
+
+  .mac-window__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    height: 30px;
+    padding: 0 10px;
+    background: #ececec;
+    border-bottom: 1px solid rgba(23, 24, 28, 0.1);
+  }
+
+  .mac-window__bar--browser {
+    height: 34px;
+    padding-bottom: 0;
+    align-items: flex-end;
+    padding-top: 6px;
+  }
+
+  .mac-lights {
+    display: inline-flex;
+    gap: 6px;
+    flex-shrink: 0;
+    padding-bottom: 2px;
+  }
+
+  .mac-lights i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .mac-window__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(23, 24, 28, 0.75);
+  }
+
+  .mac-window__body {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* -------------------------------------------------------------- tabs */
+
+  .mac-tabs {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .mac-tab {
+    max-width: 122px;
+    padding: 5px 10px 6px;
+    border-radius: 7px 7px 0 0;
+    background: rgba(23, 24, 28, 0.06);
+    font-size: 11px;
+    color: rgba(23, 24, 28, 0.55);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+
+  .mac-tab[data-active] {
+    background: var(--window);
+    color: rgba(23, 24, 28, 0.9);
+  }
+
+  .mac-urlbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    height: 30px;
+    padding: 0 10px;
+    background: var(--window);
+    border-bottom: 1px solid rgba(23, 24, 28, 0.08);
+    font-size: 11px;
+    color: rgba(23, 24, 28, 0.55);
+  }
+
+  .mac-urlbar__nav {
+    display: inline-flex;
+    gap: 6px;
+    color: rgba(23, 24, 28, 0.38);
+  }
+
+  .mac-urlbar__field {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    min-width: 0;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 5px;
+    background: rgba(23, 24, 28, 0.06);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ---------------------------------------------------- concept chip */
+
+  .mac-concept {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    /* Clears the 24px menu bar when the stage has one. */
+    margin-top: var(--concept-offset, 0px);
+    z-index: 6;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px 3px 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(10px);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: rgba(23, 24, 28, 0.72);
+  }
+
+  .mac-concept svg {
+    color: var(--caret-blue);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mac-stage__paper {
+      animation: none;
+    }
+
+    .mac-stage__paper[data-parallax],
+    .mac-stage__layer[data-parallax] {
+      translate: none;
+    }
+
+    .mac-tab {
+      transition: none;
+    }
+  }
+}

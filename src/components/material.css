@@ -1,0 +1,765 @@
+/* Ported from the Sillion lander, which is where this construction was
+ * built and measured: src/styles/lander/material.css
+ *
+ * The mechanism below is unchanged. What changed for Caret is the palette
+ * (forest green to ink blue) and the removal of the dark theme, which this
+ * page does not have. Every contrast figure quoted in this file was
+ * re-measured against the new values by tools/measure-contrast.py.
+ */
+
+/* Action material.
+ *
+ * Three controls wear one face construction at three volumes: the header
+ * shell and its pills (.pill-glass), the demo panel's own action
+ * (.pill-raised), and the hero button (.action-button). The face is two
+ * stacked radial gradients:
+ *
+ *   layer 1  a white specular at 65.61% 81.79%, composited with `overlay`
+ *   layer 2  a hue-shifted radial at 9.73% 17.27%, composited normally
+ *
+ * The specular lives in the background stack, not in a hover-only pseudo
+ * element, so the face is lit at rest and hover only deepens the light. That
+ * ordering is what reads as glass; a flat fill plus a hover highlight does not.
+ *
+ * Both stops are a hue shift rather than a light-to-dark fade: a brighter,
+ * slightly warmer blue at the lit corner travels to a deep navy at the far
+ * edge, so the face changes temperature across its width instead of merely
+ * dimming.
+ *
+ * ---------------------------------------------------------------------------
+ * Specular alpha, and the headroom blue has that the source green did not.
+ *
+ * `overlay` doubles a mid-range channel, so how far a white specular lifts a
+ * face depends on where that face's dominant channel sits. The source file
+ * measured this both ways: green lifts about 4.5x its relative luminance under
+ * overlay-white, a mid blue about 3.2x (#2d6a4f 0.114 -> 0.517; #1d5fe5 0.141
+ * -> 0.450). Green therefore had to hold its hover specular below the floor it
+ * wanted, and the source shipped a pointer-hover state at roughly 4.0-4.2:1 as
+ * a recorded trade.
+ *
+ * On this palette that trade is not needed. Measured on the real composite by
+ * tools/measure-contrast.py, with #f6f7fb ink:
+ *
+ *                       footprint-min   face-min   midpoint
+ *   action rest            5.94:1        5.67:1     6.75:1
+ *   action hover           5.22:1        5.22:1     5.32:1
+ *   pill-raised rest       6.95:1        6.77:1     7.45:1
+ *
+ *   footprint-min  worst sample in x 0.20-0.80, y 0.30-0.70, where the glyphs
+ *                  actually sit. This is the number that must clear 4.5:1.
+ *   face-min       worst sample over the whole button including the corners.
+ *
+ * Every state clears AA across the whole face, hover included. The midpoint is
+ * never the worst point: the specular peaks at 65.61%/81.79% but its falloff
+ * still reaches the upper-left of the label, which is why the footprint is
+ * sampled rather than the centre.
+ *
+ * ---------------------------------------------------------------------------
+ * The specular stays pointer-only anyway.
+ *
+ * Not for contrast now, but because the source found a real bug worth keeping
+ * fixed: the trigger sets `data-hovered` on focus as well, so a keyboard user
+ * landed in the pointer state and could not move off it. The hotspot is gated
+ * behind `(hover: hover) and (pointer: fine)`. Keyboard focus keeps the ring,
+ * the scale, the shadow step, the rim, and the arrow.
+ */
+/* Registered so it can be transitioned. See the note on .pill-glass: this is
+   the number the gradient crossfade interpolates. Unregistered it still parses
+   and still computes, so a browser without @property degrades to the snap this
+   replaced rather than to no background at all. */
+@property --pill-hover {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@layer base {
+  :root {
+    /* Ambient glass. The hover face is an overlay layer, not a replacement --
+       see the crossfade note on .pill-glass. Its alphas are what lands *on top
+       of* the rest face, so they are lower than the composite they produce:
+       0.46 over 0.52 reads as 0.74, and 0.19 over 0.14 reads as 0.30. */
+    --pill-glass-face: linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.14) 100%
+    );
+    --pill-glass-rim-top: rgba(255, 255, 255, 0.46);
+    --pill-glass-rim-bottom: rgba(255, 255, 255, 0.1);
+    --pill-glass-cast: rgba(22, 24, 34, 0.28);
+    --pill-glass-tint: rgba(35, 65, 143, 0.14);
+    --pill-glass-edge: rgba(255, 255, 255, 0.3);
+
+    /* The quietest cut of the face, worn by the demo panel's own action. The
+       stops sit close together (1.56:1 rather than the button's 2.05:1) and the
+       specular is held down, because this control sits inside a glass panel and
+       must not outrank the hero button. #f9f7f2 over the blended face:
+       7.45:1 midpoint, 6.95:1 footprint-min. */
+    --pill-raised-lift: #2b4fa8;
+    --pill-raised-base: #1a327a;
+    --pill-raised-spec: 0.22;
+    --pill-raised-cast: rgba(26, 50, 122, 0.34);
+    /* The bloom the CTAs get, held down for rank: this pill is a nav state,
+       not a call to action. */
+    --pill-raised-bloom: rgba(140, 164, 230, 0.3);
+    --pill-raised-ink: #f9f7f2;
+
+    /* The loudest cut. #2a58c2 -> #142a70 is a hue travel at a 2.05:1
+       stop-luminance ratio, matching the 2.08:1 the source tuned to. Measured
+       against #f6f7fb:
+         rest   footprint-min 5.94:1   face-min 5.67:1
+         hover  footprint-min 5.22:1   face-min 5.22:1
+       Both states clear AA across the whole face. The hover specular is 0.58
+       at 0.58 element opacity, an effective 0.34 alpha, which is the delta the
+       source found readable; below about 0.15 the button reads unresponsive. */
+    --action-lift: #2a58c2;
+    --action-base: #142a70;
+    --action-spec: 0.32;
+    --action-spec-hover: 0.58;
+    --action-ink: #f6f7fb;
+
+    /* Shadow palette. The source mapped these channel-wise from its own
+       reference stack; here they are mapped back toward blue at the same
+       lightness and alpha, so the depth ramp is unchanged and only the hue of
+       the spilled light moves. */
+    --action-bloom: rgba(150, 176, 240, 0.46);
+    --action-inset-light: rgba(191, 210, 250, 0.4);
+    --action-inset-dark: rgba(16, 28, 80, 0.1);
+
+    /* Graded cast, five layers from wide/faint to tight/firm. Each step is
+       ~20% firmer than the pass before it: the controls were reading flatter
+       against the paper than intended, and the depth is carried by the ramp
+       rather than by any single heavy layer. The first stop stays at zero
+       alpha so the widest layer fades out instead of ending on an edge. */
+    --action-cast-1: rgba(24, 40, 100, 0);
+    --action-cast-2: rgba(24, 40, 100, 0.07);
+    --action-cast-3: rgba(24, 40, 100, 0.15);
+    --action-cast-4: rgba(24, 40, 100, 0.24);
+    --action-cast-5: rgba(24, 40, 100, 0.31);
+
+    --action-sweep: rgba(255, 255, 255, 0.42);
+  }
+
+}
+
+@layer components {
+  /* ------------------------------------------------------------- 1. ambient */
+
+  /* Why the hover face is a stacked layer driven by a number, and not a second
+     `background` value.
+
+     This element used to declare `background: var(--pill-glass-face)` and swap
+     to `--pill-glass-face-hover` on hover, under `transition: background`. CSS
+     cannot interpolate one gradient into another -- `background-image` is a
+     discrete property -- so the declared transition was silently inert and the
+     swap happened on a single frame, which is the bug this replaced: the hover
+     face arrived fully formed with no travel between the two states.
+
+     Both layers are painted at once, hover on top of rest, and the hover
+     layer's stop alphas are each multiplied by `--pill-hover`, a registered
+     <number> that is 0 at rest and 1 on hover. Only that number transitions,
+     and a number interpolates, so every stop fades up together and the
+     gradient never has to be interpolated at all.
+
+     A dedicated ::before/::after overlay would be the usual shape of this fix.
+     It is not available here: ::before is the 176.87deg rim, and ::after is the
+     44px hit area from .pill-tap-target, which is applied to the same elements
+     44px hit area from .pill-tap-target. A number in the background stack
+     needs no box, so it also works on the elements where both are taken. */
+  .pill-glass {
+    position: relative;
+    /* Declared here, not at :root. A custom property substitutes where it is
+       DECLARED, so a gradient written at :root resolves `--pill-hover` against
+       :root's value (0) once, and inherits down already flattened to zero
+       alpha -- setting --pill-hover on the pill cannot recompute it. Declaring
+       the gradient on the element itself is what makes the crossfade real. */
+    background-image:
+      linear-gradient(
+        126deg,
+        rgba(255, 255, 255, calc(0.46 * var(--pill-hover))) 0%,
+        rgba(255, 255, 255, calc(0.19 * var(--pill-hover))) 100%
+      ),
+      var(--pill-glass-face);
+    border: 0;
+    box-shadow:
+      inset 0 1px 1px var(--pill-glass-rim-top),
+      inset 0 -1px 1px var(--pill-glass-rim-bottom),
+      0 12px 24px -18px var(--pill-glass-cast),
+      0 4px 10px -8px var(--pill-glass-tint);
+    backdrop-filter: blur(16px) saturate(145%);
+    transition:
+      --pill-hover 220ms ease,
+      box-shadow 240ms ease,
+      color 200ms ease,
+      transform 0.16s ease-out;
+  }
+
+  /* The same 176.87deg top rim the CTAs carry, at a fraction of the opacity.
+     It is what ties the translucent controls to the solid ones: the light
+     enters every control from the same direction. */
+  .pill-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    padding: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.5;
+    background: linear-gradient(
+      176.87deg,
+      rgba(255, 255, 255, 0.5) 8.56%,
+      rgba(255, 255, 255, 0) 85.04%
+    );
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-origin: content-box, border-box;
+    -webkit-mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-origin: content-box, border-box;
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
+    transition: opacity 220ms ease;
+  }
+
+
+
+  /* The rim is a positioned pseudo element, so without this the icons inside a
+     glass control would paint under it. The shell is excluded because its
+     children carry their own z-index and it has no rim of its own. */
+  .pill-glass:not(.pill-glass--shell) > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 640px) {
+    .pill-glass {
+      border: 1px solid var(--pill-glass-edge);
+    }
+  }
+
+  /* The pills are small and sit on a busy header, so the hover has to move more
+     than the CTAs' does to register at all: the face lift, the rim, and the
+     shadow all step at once. The shadow roughly doubles its blur and drops its
+     spread, which is what reads as the pill lifting off the header rather than
+     merely brightening. */
+  .pill-glass:focus-visible {
+    --pill-hover: 1;
+    box-shadow:
+      inset 0 1px 1px var(--pill-glass-rim-top),
+      inset 0 -1px 1px var(--pill-glass-rim-bottom),
+      0 18px 34px -16px var(--pill-glass-cast),
+      0 7px 16px -8px var(--pill-glass-tint);
+  }
+
+  .pill-glass:focus-visible::before {
+    opacity: 0.82;
+  }
+
+
+  @media (hover: hover) and (pointer: fine) {
+    .pill-glass:hover {
+      --pill-hover: 1;
+      box-shadow:
+        inset 0 1px 1px var(--pill-glass-rim-top),
+        inset 0 -1px 1px var(--pill-glass-rim-bottom),
+        0 18px 34px -16px var(--pill-glass-cast),
+        0 7px 16px -8px var(--pill-glass-tint);
+    }
+
+    .pill-glass:hover::before {
+      opacity: 0.82;
+    }
+
+  }
+
+  .pill-glass:active {
+    --material-scale: 0.97;
+    transform: scale(var(--material-scale));
+  }
+
+  .pill-glass--shell {
+    box-shadow:
+      inset 0 1px 1px var(--pill-glass-rim-top),
+      inset 0 -1px 1px var(--pill-glass-rim-bottom),
+      0 10px 20px -16px var(--pill-glass-cast);
+  }
+
+  /* The shell is a container, not a control: it holds the nav pills, so
+     pressing it would move the whole group, and its own rim would paint over
+     the selected pill that sits inside it. */
+  .pill-glass--shell:active {
+    transform: none;
+  }
+
+  .pill-glass--shell::before {
+    content: none;
+  }
+
+  /* The shell suppresses its rim (::before is `content: none` above), so the
+     face crossfade and the shadow are the only two channels it has. It is also
+     the largest of the glass surfaces, so it is held below the pills it
+     contains: 0.62 of the face lift, and a shadow step smaller than theirs. */
+  @media (hover: hover) and (pointer: fine) {
+    .pill-glass--shell:hover {
+      --pill-hover: 0.62;
+      box-shadow:
+        inset 0 1px 1px var(--pill-glass-rim-top),
+        inset 0 -1px 1px var(--pill-glass-rim-bottom),
+        0 16px 30px -16px var(--pill-glass-cast),
+        0 6px 14px -9px var(--pill-glass-tint);
+    }
+  }
+
+  /* ------------------------------------------------------------ 2. selected */
+
+  .pill-raised {
+    background-blend-mode: overlay, normal;
+    background:
+      radial-gradient(
+        101.79% 101.79% at 65.61% 81.79%,
+        rgba(255, 255, 255, var(--pill-raised-spec)) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      radial-gradient(
+        114.65% 114.65% at 9.73% 17.27%,
+        var(--pill-raised-lift) 0%,
+        var(--pill-raised-base) 100%
+      );
+    /* Same construction as the two CTAs, one step quieter: a bloom, a contact
+       cast, and the two insets that give the face its edge. It used to carry
+       two layers against their four and eight, which is why this pill read as
+       a different material sitting inside the same header. The count also has
+       to match its own hover stack or the transition snaps. */
+    box-shadow:
+      0 8px 12px var(--pill-raised-bloom),
+      0 2px 4px var(--pill-raised-cast),
+      inset -2px -2px 3px var(--action-inset-light),
+      inset 2px 2px 3px var(--action-inset-dark);
+    transition:
+      background 220ms ease,
+      box-shadow 240ms ease,
+      transform 0.16s ease-out;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pill-raised:hover {
+      box-shadow:
+        0 14px 20px var(--pill-raised-bloom),
+        0 3px 6px var(--pill-raised-cast),
+        inset -2px -2px 3px var(--action-inset-light),
+        inset 2px 2px 3px var(--action-inset-dark);
+    }
+  }
+
+  .pill-raised:active {
+    --material-scale: 0.97;
+    transform: scale(var(--material-scale));
+  }
+
+  /* --------------------------------------------------------- 4. full action */
+
+  .action-button {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+    background-blend-mode: overlay, normal;
+    background:
+      radial-gradient(
+        101.79% 101.79% at 65.61% 81.79%,
+        rgba(255, 255, 255, var(--action-spec)) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      radial-gradient(
+        114.65% 114.65% at 9.73% 17.27%,
+        var(--action-lift) 0%,
+        var(--action-base) 100%
+      );
+    color: var(--action-ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.013em;
+    line-height: 1.1;
+    cursor: pointer;
+
+    /* Reading outward: five graded casts carry the drop, the bloom is the
+       coloured light the control spills onto the page, and the two insets are
+       the lit and shaded inner edges that make the face read as a solid slab. */
+    box-shadow:
+      0 62px 17px var(--action-cast-1),
+      0 40px 16px var(--action-cast-2),
+      0 22px 13px var(--action-cast-3),
+      0 10px 10px var(--action-cast-4),
+      0 2px 5px var(--action-cast-5),
+      0 20px 24px var(--action-bloom),
+      inset -3px -3px 4px var(--action-inset-light),
+      inset 4px 4px 4px var(--action-inset-dark);
+    transition:
+      transform 0.16s ease-out,
+      box-shadow 0.28s ease-out,
+      color 0.2s ease;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  /* The five graded casts and the bloom all step together on hover: the two
+     widest casts gain blur and alpha, the bloom grows from 20/24 to 32/40, and
+     the near contact cast tightens. `box-shadow` interpolates layer by layer,
+     so the count and order must match the rest stack exactly -- a stack with a
+     different number of layers snaps instead of transitioning, which is the
+     same class of bug as the gradient swap this file's header describes. */
+  .action-button[data-hovered="true"] {
+    box-shadow:
+      0 62px 22px var(--action-cast-1),
+      0 44px 20px var(--action-cast-2),
+      0 26px 17px var(--action-cast-3),
+      0 14px 14px var(--action-cast-4),
+      0 4px 9px var(--action-cast-5),
+      0 32px 40px var(--action-bloom),
+      inset -3px -3px 5px var(--action-inset-light),
+      inset 4px 4px 4px var(--action-inset-dark);
+  }
+
+  .action-button::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    mix-blend-mode: overlay;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      101.79% 101.79% at 65.61% 81.79%,
+      rgba(255, 255, 255, var(--action-spec-hover)) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .action-button[data-hovered="true"] {
+    --material-scale: 1.03;
+    transform: scale(var(--material-scale));
+  }
+
+  /* The specular is pointer-only. `data-hovered` is also set on focus so a
+     keyboard user gets the same lift, scale, rim, and arrow, but this hotspot
+     is what drops the label to ~4.0:1 -- below AA for 16px text -- and the
+     trade recorded in this file's header is explicitly for a transient state
+     "a keyboard or touch user never enters". Gating it on a real pointer keeps
+     that premise true instead of just asserting it. */
+  @media (hover: hover) and (pointer: fine) {
+    .action-button[data-hovered="true"]:hover::after {
+      opacity: 0.58;
+    }
+  }
+
+  .action-button:focus-visible {
+    color: var(--action-ink);
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .action-button:hover {
+      --material-scale: 1.03;
+      transform: scale(var(--material-scale));
+      color: var(--action-ink);
+      box-shadow:
+        0 62px 22px var(--action-cast-1),
+        0 44px 20px var(--action-cast-2),
+        0 26px 17px var(--action-cast-3),
+        0 14px 14px var(--action-cast-4),
+        0 4px 9px var(--action-cast-5),
+        0 32px 40px var(--action-bloom),
+        inset -3px -3px 5px var(--action-inset-light),
+        inset 4px 4px 4px var(--action-inset-dark);
+    }
+
+    .action-button:hover::after {
+      opacity: 0.58;
+    }
+  }
+
+  .action-button:active {
+    --material-scale: 0.97;
+    transform: scale(var(--material-scale));
+  }
+
+  .action-button__border-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    /* The wrapper carries the radius itself: `inherit` on the child resolves
+       against this element, not the button, so without it the rim renders as a
+       square and cuts the rounded corners. */
+    border-radius: inherit;
+    pointer-events: none;
+    filter: blur(1px);
+  }
+
+  .action-button__border {
+    position: absolute;
+    inset: 0;
+    display: block;
+    border-radius: inherit;
+    opacity: 0.45;
+    padding: 3px;
+    background: linear-gradient(
+      176.87deg,
+      rgba(255, 255, 255, 0.5) 8.56%,
+      rgba(255, 255, 255, 0) 85.04%
+    );
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-position:
+      0 0,
+      0 0;
+    -webkit-mask-repeat: repeat, repeat;
+    -webkit-mask-size: auto, auto;
+    -webkit-mask-origin: content-box, border-box;
+    -webkit-mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-position:
+      0 0,
+      0 0;
+    mask-repeat: repeat, repeat;
+    mask-size: auto, auto;
+    mask-origin: content-box, border-box;
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .action-button[data-hovered="true"] .action-button__border {
+    opacity: 0.78;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .action-button:hover .action-button__border {
+      opacity: 0.62;
+    }
+  }
+
+  .action-button__content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 14px 26px;
+  }
+
+  .action-button__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    white-space: nowrap;
+    transform: translateY(-2px);
+  }
+
+  .action-button__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .action-button__icon {
+    color: rgba(246, 248, 244, 0.95);
+    flex-shrink: 0;
+  }
+
+  .action-button__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.95);
+    flex-shrink: 0;
+    transition:
+      color 0.25s ease-out,
+      transform 0.2s ease-out;
+    position: relative;
+  }
+
+  .action-button[data-hovered="true"] .action-button__arrow {
+    color: #ffffff;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .action-button:hover .action-button__arrow {
+      color: #ffffff;
+    }
+  }
+
+  .action-button__arrow-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .action-button--compact {
+    font-size: 0.9375rem;
+  }
+
+  .action-button--compact .action-button__content {
+    gap: 8px;
+    padding: 12px 20px;
+  }
+
+  .action-button--compact .action-button__arrow {
+    font-size: 0.95em;
+  }
+
+  .action-button--compact .action-button__arrow-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+
+  /* The header grid is `1fr auto 1fr`, so both side tracks take the width of
+     the wider one and every pixel added to the controls costs two. Between
+     1024 and 1280 the button has to go lean on its sides or the nav stops
+     being centred (measured: ~19px off at 1024). Padding only -- the button
+     still sizes to its content. */
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    .action-button--compact .action-button__content {
+      gap: 6px;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+  }
+
+  /* --------------------------------------------------------- action sweep */
+
+  /* The streak is a narrow, soft-edged band at roughly the 54:153 proportion of
+     the reference asset: `width` is the band, and the -40%/-40% vertical bleed
+     plus the skew give it the taller-than-wide diagonal. Three stops rather
+     than two so the falloff is soft at both edges instead of a hard wedge. */
+  .action-button__shimmer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .action-button__shimmer::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    bottom: -40%;
+    left: 0;
+    width: 18%;
+    transform: translate3d(-260%, 0, 0) skewX(-14deg);
+    filter: blur(2px);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      var(--action-sweep) 46%,
+      var(--action-sweep) 54%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: material-sweep 11s cubic-bezier(0.33, 0, 0.2, 1) 600ms infinite;
+  }
+
+  .action-button--compact .action-button__shimmer::before {
+    animation-delay: 4.2s;
+  }
+
+  /* 0 -> 9% of 11s is a ~1s sweep; the rest of the cycle is the rest state. */
+  @keyframes material-sweep {
+    0% {
+      transform: translate3d(-260%, 0, 0) skewX(-14deg);
+    }
+    9% {
+      transform: translate3d(700%, 0, 0) skewX(-14deg);
+    }
+    100% {
+      transform: translate3d(700%, 0, 0) skewX(-14deg);
+    }
+  }
+
+  /* --------------------------------------------------------- touch targets */
+
+  .pill-tap-target {
+    position: relative;
+  }
+
+  .pill-tap-target::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+
+  /* ------------------------------------------------------ theme transition */
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  [data-magicui-theme-vt="active"]::view-transition-new(root) {
+    clip-path: var(--magicui-theme-vt-clip-from);
+  }
+
+  /* --------------------------------------------------------- reduced motion */
+
+  @media (prefers-reduced-motion: reduce) {
+    .pill-glass,
+    .pill-glass::before,
+    .pill-glass:hover,
+    .pill-glass:focus-visible,
+    .pill-glass--shell,
+    .pill-glass--shell:hover,
+    .pill-raised,
+    .action-button,
+    .action-button::after,
+    .action-button__border,
+    .action-button__arrow {
+      transition: none;
+    }
+
+    /* These selectors repeat the pressed/hovered ones verbatim, including
+       :not(:disabled), rather than being shortened.
+       A media query adds no specificity, so a shortened reset at (0,2,0) loses
+       to the base rule at (0,3,0) and the scale survives into reduced motion.
+       Matching the selector exactly makes specificity equal, and this block is
+       later in the file, so it wins. Both the property and `transform` are
+       reset: either alone would be enough, together they are order-proof. */
+    .pill-glass,
+    .pill-glass:active,
+    .pill-raised,
+    .pill-raised:active,
+    .action-button,
+    .action-button:hover,
+    .action-button:active,
+    .action-button[data-hovered="true"] {
+      --material-scale: 1;
+      transform: none;
+    }
+
+    .action-button__shimmer,
+    .action-button__shimmer::before,
+    .action-button--compact .action-button__shimmer::before {
+      animation: none;
+      opacity: 0;
+    }
+  }
+}
