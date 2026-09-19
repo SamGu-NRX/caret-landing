@@ -132,7 +132,15 @@ section. Both are illustrations, not photographs, and both are drawn with
 
 ## Dependencies
 
-React, React DOM, and the two self-hosted font families. CSS handles visual
-motion; small React timers drive the scripted demos. There is no animation library. There is no test framework: this is
-presentation code, and the checks that matter are a build, a type-check, and
-looking at it.
+React, React DOM, lucide for icons, and the two self-hosted font families.
+CSS handles visual motion; small React timers drive the scripted demos. There
+is no animation library.
+
+Icons come from lucide rather than hand-typed path data, at one stroke weight
+and one grid. `src/components/Icons.tsx` re-exports the handful the page uses
+and holds the single authored drawing, the curly arrow that points at the hero
+composer; that one is linework aimed at a specific place on the page, not an
+icon. `public/favicon.svg` is lucide's sparkle on the product blue.
+
+There is no test framework: this is presentation code, and the checks that
+matter are a build, a type-check, and checking the demos in a browser.

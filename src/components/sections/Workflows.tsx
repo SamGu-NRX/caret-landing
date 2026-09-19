@@ -10,13 +10,14 @@ import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { CaretCluster, PreviewCard, SparkleGlyph } from "../caret-ui/CaretUI";
 import { BrowserWindow, ConceptChip, DesktopStage, MacWindow } from "../mac/Mac";
-import { CursorArrow } from "../Icons";
+import { CalendarIcon, CheckMark, CursorArrow, FlightIcon, ReviseIcon } from "../Icons";
 import { PINS } from "../hero/Hero";
 import { useStage } from "./useStage";
 import type { Beat } from "./useStage";
 
 function Stage({
   id,
+  mark,
   title,
   body,
   controls,
@@ -29,6 +30,8 @@ function Stage({
   onKeyDown,
 }: {
   id: string;
+  /** The same mark the pinned strip uses for this workflow, at reading size. */
+  mark: ReactNode;
   title: string;
   body: string;
   controls: ReactNode;
@@ -44,6 +47,7 @@ function Stage({
     <article id={id} className="wf" data-flip={flip || undefined}
       onPointerDownCapture={takeOver} onFocusCapture={takeOver} onKeyDown={onKeyDown}>
       <div className="wf__text">
+        <span className="wf__mark">{mark}</span>
         <h3 className="editorial-title wf__title">{title}</h3>
         <p className="wf__body">{body}</p>
         <div className="wf__controls">{controls}</div>
@@ -96,6 +100,7 @@ function ReviseStage() {
   return (
     <Stage
       id="revise"
+      mark={<ReviseIcon size={30} />}
       title="Rough notes, selected. Clean notes, in place."
       body="The asterisk follows your selection. Revise shows the rewrite before it touches the document, replaces exactly what you picked, and leaves ⌘Z working."
       stageRef={stageRef}
@@ -222,6 +227,7 @@ function FlightStage() {
   return (
     <Stage
       id="flight"
+      mark={<FlightIcon size={30} />}
       title="From the thread to the payment page, and not one step further."
       body="It reads the ask and your calendar, then drives the airline site, re-reading the page after every step. The stop before paying lives in the workflow, not in a prompt."
       flip
@@ -331,10 +337,8 @@ function FlightStage() {
               <ol className="airline__steps">
                 {SKY_STEPS.map((label, i) => (
                   <li key={label} data-done={i < step || undefined} data-now={i === step || undefined}>
-                    <span className="airline__dots" aria-hidden>
-                      <i />
-                      <i />
-                      <i />
+                    <span className="airline__mark" aria-hidden>
+                      {i < step ? <CheckMark /> : <span className="airline__dot" />}
                     </span>
                     {label}
                   </li>
@@ -375,6 +379,7 @@ function CalendarStage() {
   return (
     <Stage
       id="calendar"
+      mark={<CalendarIcon size={30} />}
       title="Three times that fit, with the reasons attached."
       body="From one email it proposes three slots that clear your calendar and the drive, drafts the reply, and holds the times. When they pick one you confirm once, and it releases only its own others."
       stageRef={stageRef}

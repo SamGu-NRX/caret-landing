@@ -8,7 +8,7 @@
 import { useRef, useState } from "react";
 import { ActionButton } from "../ActionButton";
 import { GlassAccent } from "../glass-text";
-import { ArrowUpRight, FlightIcon, CalendarIcon, ReviseIcon } from "../Icons";
+import { ArrowUpRight, CalendarIcon, CurlyArrow, FlightIcon, ReviseIcon } from "../Icons";
 import { CaretCluster } from "../caret-ui/CaretUI";
 import type { Pin } from "../caret-ui/CaretUI";
 import { BrowserWindow, ConceptChip, DesktopStage } from "../mac/Mac";
@@ -112,6 +112,13 @@ export function Hero() {
                 />
               </div>
             </BrowserWindow>
+
+            {playing ? (
+              <span className="hero-try" aria-hidden>
+                <span className="hero-try__note">Type in here. Tab takes the grey text.</span>
+                <CurlyArrow className="hero-try__arrow" />
+              </span>
+            ) : null}
 
             {/* The cluster floats beside the composer the way the app's panel
                 floats beside a field: it is not inside the window. */}

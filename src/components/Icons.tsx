@@ -1,92 +1,96 @@
-/* Drawn icons, one stroke weight, one geometry. Nothing on this page uses a
-   unicode glyph or an emoji where an icon belongs. */
+/* Shared Lucide icons. CurlyArrow is custom linework positioned beside the reply field. */
 
-type IconProps = { className?: string; size?: number };
+import {
+  ArrowUpRight as LuArrowUpRight,
+  CalendarDays,
+  Check,
+  ChevronLeft as LuChevronLeft,
+  ChevronRight,
+  MousePointer2,
+  PencilLine,
+  Plane,
+  Sparkle,
+} from "lucide-react";
 
-function Stroke({ size = 14, children, className }: IconProps & { children: React.ReactNode }) {
+/** The page's icon defaults: 1.5 stroke, decorative unless a label says otherwise. */
+const BASE = {
+  strokeWidth: 1.5,
+  "aria-hidden": true,
+  focusable: "false",
+} as const;
+
+export function ArrowUpRight({ size = 15 }: { size?: number }) {
+  return <LuArrowUpRight size={size} {...BASE} />;
+}
+
+export function Chevron({ size = 12 }: { size?: number }) {
+  return <ChevronRight size={size} {...BASE} />;
+}
+
+export function ChevronLeft({ size = 12 }: { size?: number }) {
+  return <LuChevronLeft size={size} {...BASE} />;
+}
+
+/** The pointer that marks a demo as yours to drive. */
+export function CursorArrow({ size = 15 }: { size?: number }) {
+  return <MousePointer2 size={size} {...BASE} fill="currentColor" strokeWidth={0} />;
+}
+
+/* The three workflow marks, used small in the pinned strip and large above the
+   stage headings. Same icons in both places, so the strip teaches the heading. */
+
+export function FlightIcon({ size = 14 }: { size?: number }) {
+  return <Plane size={size} {...BASE} />;
+}
+
+export function CalendarIcon({ size = 14 }: { size?: number }) {
+  return <CalendarDays size={size} {...BASE} />;
+}
+
+export function ReviseIcon({ size = 14 }: { size?: number }) {
+  return <PencilLine size={size} {...BASE} />;
+}
+
+/** Marks a step the workflow has already run. */
+export function CheckMark({ size = 12 }: { size?: number }) {
+  return <Check size={size} {...BASE} strokeWidth={2} />;
+}
+
+/* The product's own mark. The app draws SF Symbol `sparkle` filled in white on
+   a blue circle; lucide's Sparkle is the same four-point star, so it is filled
+   and unstroked here to match rather than redrawn by hand. */
+export function SparkleMark({ size = 17 }: { size?: number }) {
+  return <Sparkle size={size} {...BASE} fill="currentColor" strokeWidth={0} />;
+}
+
+/* -------------------------------------------------------- curly arrow */
+
+/* Linework, not an icon: it points from the open sky at the reply field and
+   says the demo is real. Drawn in a 200x130 box and positioned by the stage.
+   `pathLength` normalises the dash animation so the draw-in does not depend on
+   the curve's actual arc length. */
+export function CurlyArrow({ className }: { className?: string }) {
   return (
     <svg
       className={className}
-      width={size}
-      height={size}
-      viewBox="0 0 16 16"
+      viewBox="0 0 200 130"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="2.25"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
       focusable="false"
     >
-      {children}
-    </svg>
-  );
-}
-
-export function ArrowUpRight({ className }: IconProps) {
-  return (
-    <Stroke className={className}>
-      <path d="M5 11 11 5" />
-      <path d="M5.7 5H11v5.3" />
-    </Stroke>
-  );
-}
-
-export function Chevron({ className, size = 12 }: IconProps) {
-  return (
-    <Stroke className={className} size={size}>
-      <path d="M6 3.5 10.5 8 6 12.5" />
-    </Stroke>
-  );
-}
-
-/** Back and forward, for browser chrome. */
-export function ChevronLeft({ className, size = 12 }: IconProps) {
-  return (
-    <Stroke className={className} size={size}>
-      <path d="M10 3.5 5.5 8 10 12.5" />
-    </Stroke>
-  );
-}
-
-export function FlightIcon() {
-  return (
-    <Stroke>
-      <path d="m2 8 5 1-1 4 2 1 2-5 4-4c1-1-1-3-2-2L8 6 3 5Z" />
-    </Stroke>
-  );
-}
-
-export function CalendarIcon() {
-  return (
-    <Stroke>
-      <rect x="2" y="3" width="12" height="11" rx="2" />
-      <path d="M5 1.5v3M11 1.5v3M2 7h12M5 10h1M9 10h1" />
-    </Stroke>
-  );
-}
-
-export function ReviseIcon() {
-  return (
-    <Stroke>
-      <path d="m3 10 7-7 3 3-7 7-4 1 1-4ZM9 4l3 3M9 14h5" />
-    </Stroke>
-  );
-}
-
-/** The pointer, used once: the sign that a demo is yours to drive. */
-export function CursorArrow({ className, size = 14 }: IconProps) {
-  return (
-    <svg
-      className={className}
-      width={size}
-      height={size}
-      viewBox="0 0 16 16"
-      fill="currentColor"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d="M3.4 2.2a.6.6 0 0 1 .84-.55l8.4 3.9a.6.6 0 0 1-.05 1.1l-3.3 1.2-1.6 3.2a.6.6 0 0 1-1.12-.13L3.4 2.2Z" />
+      <path
+        className="curly__line"
+        pathLength={1}
+        d="M195 11C152 3 96 17 58 48 36 66 24 88 18 108"
+      />
+      {/* Barbs at 30 degrees either side of the curve's final tangent, which
+          runs down and to the left, so the head continues the pen stroke and
+          aims into the window rather than past it. */}
+      <path className="curly__head" pathLength={1} d="M37 103 18 108 23 89" />
     </svg>
   );
 }

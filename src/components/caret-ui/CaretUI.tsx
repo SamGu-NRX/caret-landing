@@ -11,24 +11,10 @@
  */
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { Chevron } from "../Icons";
+import { Chevron, SparkleMark } from "../Icons";
 import type { ReactNode } from "react";
 
-/** SF Symbol `sparkle`, redrawn. Four points, semibold weight. */
-export function SparkleGlyph({ size = 17 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d="M12 1.6c.3 0 .55.2.62.49l1.06 4.2a5.2 5.2 0 0 0 3.77 3.77l4.2 1.06a.64.64 0 0 1 0 1.24l-4.2 1.06a5.2 5.2 0 0 0-3.77 3.77l-1.06 4.2a.64.64 0 0 1-1.24 0l-1.06-4.2a5.2 5.2 0 0 0-3.77-3.77l-4.2-1.06a.64.64 0 0 1 0-1.24l4.2-1.06a5.2 5.2 0 0 0 3.77-3.77l1.06-4.2A.64.64 0 0 1 12 1.6Z" />
-    </svg>
-  );
-}
+export { SparkleMark as SparkleGlyph } from "../Icons";
 
 /* --------------------------------------------------------------- sparkle */
 
@@ -53,7 +39,7 @@ export function Sparkle({ onClick, expanded, controls, buttonRef }: SparkleProps
       aria-controls={controls && expanded ? controls : undefined}
     >
       <span className="cu-sparkle__dot">
-        <SparkleGlyph />
+        <SparkleMark />
       </span>
     </button>
   );

@@ -95,8 +95,6 @@
     line-height: 1;
     color: var(--color-text-primary);
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     cursor: pointer;
     transition: background-color 120ms ease;
   }
