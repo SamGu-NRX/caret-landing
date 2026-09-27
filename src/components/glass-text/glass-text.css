@@ -1,0 +1,337 @@
+/* Ported from the Sillion lander, which is where this construction was
+ * built and measured: src/components/glass-text/glass-text.css
+ *
+ * The mechanism below is unchanged. What changed for Caret is the palette
+ * (forest green to ink blue) and the removal of the dark theme, which this
+ * page does not have. Every contrast figure quoted in this file was
+ * re-measured against the new values by tools/measure-contrast.py.
+ */
+
+/* Glass accent text.
+ *
+ * Gives the accent words the button's material: a lit face, a crisp
+ * edge along the bottom of each glyph, and a cast under it. Static.
+ *
+ * ---------------------------------------------------------------------------
+ * Why the edges are separate copies of the word and not a shadow.
+ *
+ * The button is a box, so its material comes from `box-shadow` with INSET and
+ * SPREAD over a layered background. `text-shadow` has neither, so nothing
+ * about the button ports across directly and the effect has to be rebuilt.
+ *
+ * `text-shadow` is not merely weaker here, it is unusable. The face is a
+ * gradient clipped to the glyphs with `-webkit-text-fill-color: transparent`,
+ * and a transparent fill does not hide what is behind it. The shadow paints
+ * THROUGH the glyph interior instead of behind it, so a 1px rim floods the
+ * whole face with rim colour and the gradient reads as a muddied wash. This
+ * was measured twice -- once in Chrome against a red test shadow, and again
+ * when a dark cast was tried as `text-shadow` and darkened the face it was
+ * supposed to sit behind.
+ *
+ * `filter: drop-shadow()` avoids that -- it follows the glyph alpha and
+ * composites outside the fill. It cannot carry a mask, so it can only produce
+ * a uniform silhouette. That difference is what separates the two tiers below.
+ *
+ * ---------------------------------------------------------------------------
+ * The light rig.
+ *
+ * One rig for the whole page. The Book a Demo button's specular sits low on
+ * its face (65.61% 81.79%) and its lit inset is the lower edge, so light
+ * enters from below. The hero shows that button and this text together, so
+ * the text has to agree or the two objects contradict each other.
+ *
+ * Hence the face ramp runs DARK at cap height to LIGHT at the baseline, the
+ * rim is a copy nudged 0.016em down, and the cast is a blurred copy 0.07em
+ * down. Both were compared against the inverse at hero size: lit-from-above
+ * washes out flat against Newsreader italic's stroke contrast, while
+ * lit-from-below catches the bowls of c, e, a and the g descender, which is
+ * where light would actually collect.
+ *
+ * ---------------------------------------------------------------------------
+ * The two edge channels.
+ *
+ * Three things are painted in the same places: a face, a CRISP RIM one hair
+ * below it, and a SOFT CAST further below and blurred. The rim is the border
+ * between the glyph and its own spill; the cast is the spill.
+ *
+ *   dark face  ->  white rim  ->  dark soft cast  on paper
+ *
+ * What the rim has to do is stand between the face and the spill so the spill
+ * reads as light FALLING ON the ground behind the word rather than leaking out
+ * of it. Remove it and the word glows: a spill touching the letter with no
+ * edge in between reads as light EMITTED by the letter, and the places where
+ * one stroke passes behind another lose their overlap entirely.
+ *
+ * The rim has to be legible against something. Whichever of the face or the
+ * page is the bright one, the rim must contrast with the OTHER. Here the face
+ * is dark, so a paper-white rim is legible against the face and its
+ * relationship to the page does not matter. The source file also carried a
+ * dark theme, where the face was the bright thing; that inverted case needed a
+ * mid-tone rim instead, and is the reason this is a variable rather than a
+ * literal. Caret is light only, so only the light case ships.
+ *
+ * The rim carries an upward fade mask in the full tier. Unmasked it outlines
+ * the whole glyph and reads as a second, misregistered word; masked to the
+ * lower third it fuses into the face and reads as one lit edge.
+ *
+ * ---------------------------------------------------------------------------
+ * Two tiers, split by whether the accent has to wrap.
+ *
+ * FULL is three registered copies of the word stacked behind each other, so
+ * the rim can carry its own fade mask. It is `display: inline-block` -- it
+ * has to be, because the copies are absolutely positioned against it -- and
+ * an inline-block will not break across lines. A long accent phrase in the
+ * full tier is therefore dumped onto a line of its own, or overflows its
+ * heading when it no longer fits. Full is for a single short accent that is
+ * known to sit at the end of a line: the hero's "cheating.", About's "team."
+ *
+ * FLOW is one inline element and paints its edges with a `drop-shadow` chain
+ * instead of copies. It wraps freely, which is the whole reason it exists.
+ * The chain applies right to left in stacking terms -- the first shadow lands
+ * behind the glyph, the second behind that -- so rim then cast gives the same
+ * back-to-front order the full tier gets from its z-indexes. What flow cannot
+ * have is the fade mask, so its rim outlines the whole downward silhouette
+ * rather than fading out toward cap height. At display size that reads as the
+ * same lighting; it is why flow is not used below 2rem.
+ *
+ * The rim offset is a fixed 1px rather than the full tier's 0.016em. At
+ * `editorial-title` sizes 0.016em is 0.7px, which no longer lands on a device
+ * pixel and renders as a grey smear instead of a border. The cast stays in em
+ * (0.07em down, 0.076em blur) because it is blurred anyway, and because
+ * `drop-shadow`'s blur argument is twice the `blur()` filter's deviation --
+ * 0.076em here is the full tier's `blur(0.038em)`, so the two tiers cast the
+ * same shadow at the same size.
+ *
+ * Below 2rem there is no tier: the accent stays flat `--color-accent`.
+ */
+
+@layer components {
+  /* The face ramp and the two edge channels. */
+  :root {
+    /* Full tier. Declared with alpha so the rim copy reads through the lower
+       third of the face rather than stopping dead at its edge. */
+    --glass-text-top: rgba(18, 30, 78, 0.96);
+    --glass-text-mid: rgba(31, 58, 134, 0.9);
+    --glass-text-bottom: rgba(50, 92, 184, 0.84);
+
+    /* Flow tier: the same ramp, pre-composited onto paper. `drop-shadow`
+       reads the face's own alpha, so an alpha face would let the rim and the
+       cast paint through it -- the `text-shadow` failure again, by a slower
+       route. Opaque stops keep the shadows behind the glyph where they
+       belong. */
+    --glass-text-flow-top: #1b2755;
+    --glass-text-flow-mid: #354d91;
+    --glass-text-flow-bottom: #5275c1;
+
+    /* Paper caught under the glyph edge. Not pure white at full alpha, which
+       is the engraved-plastic letterpress look. */
+    --glass-text-rim: rgba(255, 253, 247, 0.9);
+    --glass-text-cast: rgba(16, 30, 84, 0.36);
+    /* Flow's rim is unmasked, so it shows along the whole downward silhouette
+       instead of fading out. Pulled back to compensate. */
+    --glass-text-flow-rim: rgba(255, 253, 247, 0.82);
+    --glass-text-flow-cast: rgba(16, 30, 84, 0.3);
+
+    --glass-text-rim-fade: linear-gradient(
+      to top,
+      #000 0%,
+      #000 34%,
+      rgba(0, 0, 0, 0.5) 60%,
+      transparent 86%
+    );
+
+    /* Geometry. These stay variables because the source retuned all three per
+       theme for physical rather than stylistic reasons, and a second theme
+       would need to again. */
+    --glass-text-rim-shift: 0.016em;
+    --glass-text-cast-shift: 0.07em;
+    --glass-text-cast-blur: 0.038em;
+    /* Where the ramp finishes brightening. 100% is the bottom of the em box,
+       which is below the descender line, so at 100% the brightest part of the
+       ramp lands in space no glyph occupies. */
+    --glass-text-ramp-end: 100%;
+  }
+
+
+  /* The whole treatment is opt-in behind @supports. Where background-clip:
+     text is unavailable the element keeps `color` and renders flat, which is
+     the previous design rather than a broken one. The layer copies default to
+     `display: none` for the same reason: without a clipped face to hide
+     behind they would render as three visible, offset words. */
+  .glass-text {
+    color: var(--color-accent);
+  }
+
+  .glass-text__layer {
+    display: none;
+  }
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    /* Full tier only. `isolation` keeps the negative z-indexes local, so the
+       copies sit behind the face but still in front of the page background
+       rather than disappearing behind an ancestor's. */
+    .glass-text:not(.glass-text--flow) {
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
+    }
+
+    .glass-text__layer {
+      display: block;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* Keeps the word one logical string: only the face is selectable, and
+         browsers exclude user-select: none subtrees from the clipboard. */
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .glass-text__cast {
+      z-index: -2;
+      transform: translateY(var(--glass-text-cast-shift));
+      filter: blur(var(--glass-text-cast-blur));
+      color: var(--glass-text-cast);
+    }
+
+    .glass-text__rim {
+      z-index: -1;
+      transform: translateY(var(--glass-text-rim-shift));
+      color: var(--glass-text-rim);
+      -webkit-mask-image: var(--glass-text-rim-fade);
+      mask-image: var(--glass-text-rim-fade);
+    }
+
+    .glass-text__face {
+      position: relative;
+      /* background-image, not the `background` shorthand: the shorthand resets
+         background-clip to border-box and the text renders as a filled
+         rectangle instead of clipped glyphs. */
+      background-image: linear-gradient(
+        170deg,
+        var(--glass-text-top) 0%,
+        var(--glass-text-mid) 46%,
+        var(--glass-text-bottom) var(--glass-text-ramp-end)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* Flow tier: one inline element, edges from a drop-shadow chain, wraps.
+       See the tier note at the top of this file for the offsets. */
+    .glass-text--flow {
+      background-image: linear-gradient(
+        170deg,
+        var(--glass-text-flow-top) 0%,
+        var(--glass-text-flow-mid) 46%,
+        var(--glass-text-flow-bottom) var(--glass-text-ramp-end)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      filter: drop-shadow(0 1px 0 var(--glass-text-flow-rim))
+        drop-shadow(0 0.07em 0.076em var(--glass-text-flow-cast));
+    }
+
+    /* Transparent fill also makes selected text disappear, because the
+       selection paints under a glyph that has no fill of its own. Declared on
+       both the face and the element: the full tier's selectable text is the
+       face span, the flow tier's is the element itself. */
+    .glass-text::selection,
+    .glass-text__face::selection {
+      -webkit-text-fill-color: var(--color-accent-foreground);
+      color: var(--color-accent-foreground);
+      background-color: var(--color-accent);
+    }
+  }
+
+  /* Three ways the decoration has to come off, all restoring an opaque fill on
+     a single inline element. They share one reset because the failure is
+     identical in each: a clipped gradient with a transparent fill has no
+     colour of its own, so anything that drops the gradient drops the text with
+     it -- and the layer copies, which exist only to be hidden behind that
+     face, become three offset words if they survive it.
+
+     Each block therefore does four things: kill the gradient, restore an
+     opaque colour, drop the filter, and `display: none` the copies. The
+     display reset repeats the `:not(.glass-text--flow)` selector because the
+     rule it has to beat carries that selector's specificity.
+
+     forced-colors -- the OS is picking the palette, and a gradient is an image
+     to that mode. CanvasText, not the accent, is what the user asked for.
+
+     print -- `print-color-adjust` is a request, not a guarantee. A printer or
+     a user setting may discard the gradient to save ink, and transparent text
+     on white paper is a blank space where the sentence ends.
+
+     prefers-contrast: more -- the reader has asked for less subtlety, and a
+     lit face with a rim and a cast is exactly the subtlety they turned off. */
+  @media (forced-colors: active) {
+    .glass-text,
+    .glass-text--flow,
+    .glass-text__face {
+      background-image: none;
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+      -webkit-text-fill-color: CanvasText;
+      color: CanvasText;
+      filter: none;
+    }
+
+    .glass-text:not(.glass-text--flow) {
+      display: inline;
+    }
+
+    .glass-text__layer {
+      display: none;
+    }
+  }
+
+  @media print {
+    .glass-text,
+    .glass-text--flow,
+    .glass-text__face {
+      background-image: none;
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+      /* The ink colour is pinned rather than taken from --color-accent, so a
+         future theme cannot resolve the token to something pale and print a
+         near-blank line. This blue measures 9.44:1 on white paper. */
+      -webkit-text-fill-color: #23418f;
+      color: #23418f;
+      filter: none;
+    }
+
+    .glass-text:not(.glass-text--flow) {
+      display: inline;
+    }
+
+    .glass-text__layer {
+      display: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .glass-text,
+    .glass-text--flow,
+    .glass-text__face {
+      background-image: none;
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+      -webkit-text-fill-color: var(--color-accent);
+      color: var(--color-accent);
+      filter: none;
+    }
+
+    .glass-text:not(.glass-text--flow) {
+      display: inline;
+    }
+
+    .glass-text__layer {
+      display: none;
+    }
+  }
+}
