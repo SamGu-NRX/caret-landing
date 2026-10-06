@@ -1864,4 +1864,13 @@
       stroke-dashoffset: 0;
     }
   }
+
+  /* Arriving from kgu.one (the continuation script in index.html), the hero's note and arrow are in place under
+     kgu.one's dots from the first frame, rather than arriving once they have cleared. */
+  html[data-kgu-arrival] .hero-try__note,
+  html[data-kgu-arrival] .hero-try__arrow .curly__line,
+  html[data-kgu-arrival] .hero-try__arrow .curly__head {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
