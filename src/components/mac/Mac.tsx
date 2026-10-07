@@ -66,7 +66,6 @@ export function DesktopStage({
   dim,
   style,
   hero,
-  parallax,
 }: {
   children: ReactNode;
   menuBar?: boolean;
@@ -77,7 +76,6 @@ export function DesktopStage({
   style?: CSSProperties;
   /** The hero's desktop: loaded first, and the one that may be in colour. */
   hero?: boolean;
-  parallax?: boolean;
 }) {
   const paper = wallpaperFor(Boolean(hero));
   const inColour = paper?.src === WALLPAPER;
@@ -90,7 +88,6 @@ export function DesktopStage({
       {paper ? (
         <img
           className="mac-stage__paper"
-          data-parallax={parallax || undefined}
           src={paper.src}
           alt={paper.alt}
           loading={hero ? "eager" : "lazy"}
@@ -106,7 +103,7 @@ export function DesktopStage({
         />
       ) : null}
       {menuBar ? <MenuBar /> : null}
-      <div className="mac-stage__layer" data-parallax={parallax || undefined}>
+      <div className="mac-stage__layer">
         {children}
       </div>
     </div>

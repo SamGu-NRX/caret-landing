@@ -1,9 +1,8 @@
 import { REPO_URL } from "../lib/site";
 
 const LINKS = [
-  { href: "#how", label: "How it works" },
   { href: "#workflows", label: "Workflows" },
-  { href: "#inside", label: "Under the hood" },
+  { href: "#inside", label: "How it works" },
   { href: "#austin", label: "Austin" },
 ];
 

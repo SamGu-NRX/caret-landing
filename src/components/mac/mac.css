@@ -31,17 +31,6 @@
     image-rendering: pixelated;
   }
 
-  /* The wallpaper and the windows move at different rates as the section
-     scrolls, which is the whole of the depth effect. `--stage-p` is written by
-     the section that owns the stage. */
-  .mac-stage__paper[data-parallax] {
-    translate: 0 calc(var(--stage-p, 0) * -40px);
-  }
-
-  .mac-stage__layer[data-parallax] {
-    translate: 0 calc(var(--stage-p, 0) * -16px);
-  }
-
   .mac-stage__dim {
     position: absolute;
     inset: 0;
@@ -279,11 +268,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .mac-stage__paper[data-parallax],
-    .mac-stage__layer[data-parallax] {
-      translate: none;
-    }
-
     .mac-tab,
     .pill-raised {
       transition: none;
