@@ -117,9 +117,11 @@ export function Hero() {
               ) : null}
 
               {/* The cluster floats beside the composer the way the app's panel
-                  floats beside a field: it is not inside the window. */}
+                  floats beside a field: it is not inside the window. It is
+                  flipped, as the app flips it near a screen edge, so its menu
+                  opens back over the window instead of past the desktop. */}
               <span className="hero-cluster">
-                <CaretCluster pins={PINS} onRun={goTo} />
+                <CaretCluster pins={PINS} onRun={goTo} flip />
               </span>
             </DesktopStage>
           </div>

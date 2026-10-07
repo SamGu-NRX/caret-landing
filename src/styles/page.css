@@ -201,6 +201,12 @@
     height: auto;
   }
 
+  /* Four tabs share a narrow window; the open one keeps its whole title so
+     the thread on screen is always named. */
+  .hero-browser .mac-tab[data-active] {
+    flex-shrink: 0;
+  }
+
   .hero-thread {
     padding: 14px 16px;
     overflow: hidden;
@@ -228,8 +234,9 @@
   }
 
   /* The annotation that points at the reply field: a line of serif italic and
-     a drawn arrow in the open sky beside the window. No shadow behind either;
-     the sky there is dark enough for the paper-white ink on its own. */
+     a drawn arrow in the open sky beside the window. No shadow behind either.
+     Measured against the painting under the note at 1440: 7.7:1 median, 6.7:1
+     at the 5th percentile, 2.3:1 where it crosses a star or a lit cloud. */
   .hero-try {
     position: absolute;
     left: calc(66% + 14px);
@@ -287,11 +294,12 @@
     }
   }
 
-  /* Level with the reply field, 10px past the window's edge: the app places
-     its panel at x + 10 from the anchor. */
+  /* Level with the reply field, in the open third beside the window. The
+     cluster is flipped (sparkle outermost), so it is anchored by its right
+     edge and its menu opens leftward, back over the window. */
   .hero-cluster {
     position: absolute;
-    left: calc(66% + 10px);
+    right: 4%;
     top: 58%;
     z-index: 8;
   }
@@ -422,6 +430,14 @@
     cursor: pointer;
   }
 
+  /* The drawn button is 22px tall, the size of a chip in a mail window. On a
+     phone it is the only way to accept, so its touch area is 44px. */
+  .rc__accept::after {
+    content: "";
+    position: absolute;
+    inset: -11px -4px;
+  }
+
   .rc__toolbar {
     display: flex;
     align-items: center;
@@ -456,17 +472,19 @@
   }
 
   /* Floated so the legend lays out as an ordinary block above the track
-     instead of sitting in the fieldset's border. */
+     instead of sitting in the fieldset's border. No width: a 100% width here
+     resolved against the flex row and stretched the fieldset, pushing Replay
+     away from the switch. */
   .hero-context__legend {
     float: left;
-    width: 100%;
     margin-bottom: 10px;
     padding: 0;
   }
 
   .hero-context__track {
     clear: both;
-    display: inline-flex;
+    display: flex;
+    width: fit-content;
     gap: 2px;
     padding: 4px;
     border-radius: 999px;
@@ -474,6 +492,7 @@
   }
 
   .hero-context__opt {
+    position: relative;
     display: inline-flex;
     align-items: center;
     min-height: 36px;
@@ -486,6 +505,14 @@
     transition:
       background-color 160ms ease,
       color 160ms ease;
+  }
+
+  /* The drawn chip is 36px inside a 44px track; its touch area is the
+     track's full height. */
+  .hero-context__opt::after {
+    content: "";
+    position: absolute;
+    inset: -4px -1px;
   }
 
   .hero-context__opt[data-on] {
@@ -705,12 +732,13 @@
     font-weight: 500;
     cursor: pointer;
     transition:
-      transform 140ms var(--ease-out),
+      transform 100ms var(--ease-out),
       background-color 160ms ease;
   }
 
-  .wf__go:active {
+  .wf__go:active:not(:focus-visible) {
     transform: scale(0.97);
+    transition-duration: 140ms, 160ms;
   }
 
   .wf__quiet {
@@ -1472,8 +1500,6 @@
     }
 
     .hero-cluster {
-      left: auto;
-      right: 4%;
       top: 7%;
     }
 
@@ -1522,7 +1548,7 @@
       translate: none;
     }
 
-    .wf__go:active {
+    .wf__go:active:not(:focus-visible) {
       transform: none;
     }
 

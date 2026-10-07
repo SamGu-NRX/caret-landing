@@ -206,7 +206,8 @@
   /* ---------------------------------------------------- concept chip */
 
   /* The page's own label on a picture, so it is in the page's face, flat.
-     Ink at 0.8 on the 0.92 white measures above 9:1 over any wallpaper. */
+     Ink at 0.8 on the 0.92 white measured 8.37:1 at its worst pixel over the
+     hero's full-colour painting. */
   .mac-concept {
     position: absolute;
     left: 12px;
@@ -227,35 +228,52 @@
     color: rgba(23, 24, 28, 0.8);
   }
 
-  /* ------------------------------------------------ product surfaces */
+  .mac-concept svg {
+    color: var(--caret-blue);
+  }
 
-  /* The app draws its strip, menu and preview card on macOS's
-     ultraThinMaterial. Without a backdrop blur, any translucency lets the
-     window text underneath show through the card, so the page draws the
-     material as an opaque white sheet with a hairline edge and a window's
-     shadow. CaretUI.tsx names these two classes; the specular, rim and tinted
-     cast they used to carry came out with material.css. */
+  @media (prefers-reduced-motion: reduce) {
+    .mac-tab {
+      transition: none;
+    }
+  }
+}
+
+/* ---------------------------------------------------- product surfaces
+
+   The app draws its strip, menu and preview card on macOS's
+   ultraThinMaterial. Without a backdrop blur, any translucency lets the window
+   text underneath show through the card, so the page draws the material as an
+   opaque white sheet with a hairline edge and a window's shadow. CaretUI.tsx
+   names these two classes; the specular, rim and tinted cast they used to
+   carry came out with material.css.
+
+   These sit in `components`, below `page`, as the old material did: caret-ui.css
+   positions the menu absolutely, and a surface rule in the same layer and
+   imported later would override it. */
+@layer components {
   :root {
     --pill-raised-ink: #f9f7f2; /* 8.82:1 on the accent */
   }
 
   .pill-glass {
-    position: relative;
     background: var(--window);
     box-shadow:
       0 0 0 1px rgba(23, 24, 28, 0.1),
       0 10px 24px -12px rgba(23, 24, 28, 0.45);
   }
 
+  /* Press and hover as .button in tokens.css. */
   .pill-raised {
     background: var(--color-accent);
     transition:
       background-color 160ms ease,
-      transform 140ms var(--ease-out);
+      transform 100ms var(--ease-out);
   }
 
-  .pill-raised:active {
+  .pill-raised:active:not(:focus-visible) {
     transform: scale(0.97);
+    transition-duration: 160ms, 140ms;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -264,17 +282,12 @@
     }
   }
 
-  .mac-concept svg {
-    color: var(--caret-blue);
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .mac-tab,
     .pill-raised {
       transition: none;
     }
 
-    .pill-raised:active {
+    .pill-raised:active:not(:focus-visible) {
       transform: none;
     }
   }

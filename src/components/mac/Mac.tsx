@@ -10,6 +10,7 @@
  * interactive elements inside an image.
  */
 
+import { useEffect, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { SparkleGlyph } from "../caret-ui/CaretUI";
 import { Chevron, ChevronLeft } from "../Icons";
@@ -35,6 +36,33 @@ function wallpaperFor(hero: boolean): { src: string; alt: string } | null {
   if (PAINTING === "C") return null;
   if (PAINTING === "A" && hero) return { src: WALLPAPER, alt: WALLPAPER_ALT };
   return { src: WALLPAPER_INK, alt: WALLPAPER_INK_ALT };
+}
+
+/* The hero's painting is the largest thing in the first screen. On a phone the
+ * desktops below it sit inside the browser's lazy-load distance, so their ink
+ * prints downloaded alongside it: with Lighthouse's real mobile throttling
+ * that moved its largest-contentful-paint from 15.7 s on main to 20.6 s. The
+ * other desktops wait for the hero's painting instead. */
+let heroSettled = false;
+const waitingForHero = new Set<() => void>();
+
+function settleHero() {
+  heroSettled = true;
+  waitingForHero.forEach((resume) => resume());
+  waitingForHero.clear();
+}
+
+function useAfterHero(): boolean {
+  const [ready, setReady] = useState(heroSettled);
+  useEffect(() => {
+    if (ready) return;
+    const resume = () => setReady(true);
+    waitingForHero.add(resume);
+    return () => {
+      waitingForHero.delete(resume);
+    };
+  }, [ready]);
+  return ready;
 }
 
 /* ------------------------------------------------------------ menu bar */
@@ -79,20 +107,25 @@ export function DesktopStage({
 }) {
   const paper = wallpaperFor(Boolean(hero));
   const inColour = paper?.src === WALLPAPER;
+  const afterHero = useAfterHero();
   return (
     <div
       className={className ? `mac-stage ${className}` : "mac-stage"}
       data-paper={paper ? (inColour ? "colour" : "ink") : "none"}
       style={style}
     >
-      {paper ? (
+      {paper && (hero || afterHero) ? (
         <img
           className="mac-stage__paper"
           src={paper.src}
           alt={paper.alt}
+          width={1536}
+          height={1024}
           loading={hero ? "eager" : "lazy"}
           fetchPriority={hero ? "high" : undefined}
           draggable={false}
+          onLoad={hero ? settleHero : undefined}
+          onError={hero ? settleHero : undefined}
         />
       ) : null}
       {dim && inColour ? (
