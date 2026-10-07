@@ -18,6 +18,25 @@ export const WALLPAPER = `${import.meta.env.BASE_URL}art/austin-dusk.png`;
 export const WALLPAPER_ALT =
   "Pixel-art illustration of Austin at dusk from the south bank of Lady Bird Lake: the Congress Avenue bridge with bats lifting off, downtown towers with lit windows, the Capitol dome, an indigo sky fading to peach at the horizon.";
 
+/* The same painting as one-colour ink, from tools/ink-print.mjs. */
+const WALLPAPER_INK = `${import.meta.env.BASE_URL}art/austin-dusk-ink.webp`;
+const WALLPAPER_INK_ALT =
+  "The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.";
+
+/* Where the painting appears. This is Sam's open decision 2 in the kgu.one
+ * design handoff (HANDOFF-caret.md); "A" is its recommended default.
+ *   A  full colour in the hero only; every other desktop uses the ink print
+ *   B  the ink print on every desktop, the hero included
+ *   C  no painting; every desktop is flat paper with a hairline edge
+ * The Austin section's own illustration is not affected. */
+export const PAINTING: "A" | "B" | "C" = "A";
+
+function wallpaperFor(hero: boolean): { src: string; alt: string } | null {
+  if (PAINTING === "C") return null;
+  if (PAINTING === "A" && hero) return { src: WALLPAPER, alt: WALLPAPER_ALT };
+  return { src: WALLPAPER_INK, alt: WALLPAPER_INK_ALT };
+}
+
 /* ------------------------------------------------------------ menu bar */
 
 export function MenuBar() {
@@ -46,30 +65,40 @@ export function DesktopStage({
   className,
   dim,
   style,
-  eager,
+  hero,
   parallax,
 }: {
   children: ReactNode;
   menuBar?: boolean;
   className?: string;
-  /** 0..1 overlay so a frame's UI reads before its scenery does. */
+  /** 0..1 overlay so a frame's UI reads before its scenery does. Only drawn
+      over the full-colour painting; the ink print is already quiet. */
   dim?: number;
   style?: CSSProperties;
-  eager?: boolean;
+  /** The hero's desktop: loaded first, and the one that may be in colour. */
+  hero?: boolean;
   parallax?: boolean;
 }) {
+  const paper = wallpaperFor(Boolean(hero));
+  const inColour = paper?.src === WALLPAPER;
   return (
-    <div className={className ? `mac-stage ${className}` : "mac-stage"} style={style}>
-      <img
-        className="mac-stage__paper"
-        data-parallax={parallax || undefined}
-        src={WALLPAPER}
-        alt={WALLPAPER_ALT}
-        loading={eager ? "eager" : "lazy"}
-        fetchPriority={eager ? "high" : undefined}
-        draggable={false}
-      />
-      {dim ? (
+    <div
+      className={className ? `mac-stage ${className}` : "mac-stage"}
+      data-paper={paper ? (inColour ? "colour" : "ink") : "none"}
+      style={style}
+    >
+      {paper ? (
+        <img
+          className="mac-stage__paper"
+          data-parallax={parallax || undefined}
+          src={paper.src}
+          alt={paper.alt}
+          loading={hero ? "eager" : "lazy"}
+          fetchPriority={hero ? "high" : undefined}
+          draggable={false}
+        />
+      ) : null}
+      {dim && inColour ? (
         <span
           aria-hidden
           className="mac-stage__dim"

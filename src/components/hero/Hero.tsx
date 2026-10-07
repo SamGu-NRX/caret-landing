@@ -1,13 +1,13 @@
-/* The hero. Headline, then a Mac desktop with one browser window on it.
+/* The hero. The claim on the left, the working product on the right.
  *
- * The headline ends in the real control at its real size, so the sentence
- * "the size of an asterisk" is demonstrated by the object that finishes it
- * rather than asserted. Everything around it stays quiet so that lands.
+ * At 1100px and up it is two columns on the page rail: the headline,
+ * standfirst, actions and the "What else is open" switch on the left, and a Mac
+ * desktop with one browser window on the right, close enough to the headline
+ * that the composer is in the first screen. Below 1100px it stacks: copy, the
+ * desktop, then the switch, so a phone reaches the demo before the control.
  */
 
 import { useRef, useState } from "react";
-import { ActionButton } from "../ActionButton";
-import { GlassAccent } from "../glass-text";
 import { ArrowUpRight, CalendarIcon, CurlyArrow, FlightIcon, ReviseIcon } from "../Icons";
 import { CaretCluster } from "../caret-ui/CaretUI";
 import type { Pin } from "../caret-ui/CaretUI";
@@ -44,117 +44,122 @@ export function Hero() {
 
   return (
     <section className="hero section-shell">
-      <div className="page-container hero-copy">
-        <h1 className="editorial-display hero-title">
-          An assistant
-          <br />
-          the size of{" "}
-          <span className="hero-title__tail">
-            <GlassAccent className="editorial-accent">an asterisk.</GlassAccent>
-            {/* The specimen: the real cluster, real size, 10px after the
-                sentence, which is the x + 10 offset the app positions with. */}
-            <span className="hero-specimen">
-              <CaretCluster pins={PINS} onRun={goTo} />
+      <div className="page-container hero-grid">
+        <div className="hero-copy">
+          {/* Each line is its own block, so the headline always breaks in the
+              same three places. The spaces keep the text a sentence for a
+              screen reader. */}
+          <h1 className="hero-title">
+            <span>An assistant</span> <span>the size of</span>{" "}
+            <span>
+              <em className="editorial-accent">an asterisk.</em>
             </span>
-          </span>
-        </h1>
+          </h1>
 
-        <p className="editorial-standfirst hero-standfirst">
-          A native Mac assistant that lives beside your cursor. It finishes the sentence you
-          are typing, or offers the next step from the thread you are reading. Tab accepts,
-          and nothing runs before you have seen what it will do.
-        </p>
+          <p className="hero-standfirst">
+            A native Mac assistant that lives beside your cursor. It finishes the sentence you
+            are typing, or offers the next step from the thread you are reading. Tab accepts,
+            and nothing runs before you have seen what it will do.
+          </p>
 
-        <div className="hero-actions">
-          <ActionButton
-            onClick={() => {
-              stageRef.current?.scrollIntoView({ block: "center" });
-              stageRef.current?.querySelector("textarea")?.focus();
-            }}
-          >
-            Try it below
-          </ActionButton>
-          <a
-            className="hero-secondary link-underline"
-            href={REPO_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            See the code
-            <ArrowUpRight />
-          </a>
-        </div>
-      </div>
-
-      <div className="page-container">
-        <div className="hero-stage" ref={stageRef}>
-          <DesktopStage menuBar eager>
-            <ConceptChip />
-            <BrowserWindow
-              className="hero-browser"
-              tabs={preset.tabs}
-              activeTab={preset.activeTab}
-              url={preset.url}
+          <div className="hero-actions">
+            <button
+              type="button"
+              className="button"
+              onClick={() => {
+                stageRef.current?.scrollIntoView({ block: "center" });
+                stageRef.current?.querySelector("textarea")?.focus();
+              }}
             >
-              <div className="hero-thread">
-                <p className="hero-thread__subject">Next week?</p>
-                <p className="hero-thread__from">
-                  Alex Rivera &lt;alex@example.com&gt;
-                  <span>Sat, Sep 19</span>
-                </p>
-                <p className="hero-thread__body">
-                  Hey — are you around next week? Let me know what makes sense on your end.
-                </p>
-                <ReplyComposer
-                  context={preset}
-                  resetKey={run}
-                  onFirstInput={() => setPlaying(false)}
-                />
-              </div>
-            </BrowserWindow>
+              Try the demo
+            </button>
+            <a className="text-link" href={REPO_URL} target="_blank" rel="noreferrer">
+              See the code
+              <ArrowUpRight />
+            </a>
+          </div>
+        </div>
 
-            {playing ? (
-              <span className="hero-try" aria-hidden>
-                <span className="hero-try__note">Type in here. Tab takes the grey text.</span>
-                <CurlyArrow className="hero-try__arrow" />
+        <div className="hero-demo">
+          <div className="hero-stage" ref={stageRef}>
+            <DesktopStage menuBar hero>
+              <ConceptChip />
+              <BrowserWindow
+                className="hero-browser"
+                tabs={preset.tabs}
+                activeTab={preset.activeTab}
+                url={preset.url}
+              >
+                <div className="hero-thread">
+                  <p className="hero-thread__subject">Next week?</p>
+                  <p className="hero-thread__from">
+                    Alex Rivera &lt;alex@example.com&gt;
+                    <span>Sat, Sep 19</span>
+                  </p>
+                  <p className="hero-thread__body">
+                    Hey — are you around next week? Let me know what makes sense on your end.
+                  </p>
+                  <ReplyComposer
+                    context={preset}
+                    resetKey={run}
+                    onFirstInput={() => setPlaying(false)}
+                  />
+                </div>
+              </BrowserWindow>
+
+              {/* kgu.one's arrival rules (its PR #1) select .hero-try__note and
+                  .hero-try__arrow by name. Keep both. */}
+              {playing ? (
+                <span className="hero-try" aria-hidden>
+                  <span className="hero-try__note">Type in here. Tab takes the grey text.</span>
+                  <CurlyArrow className="hero-try__arrow" />
+                </span>
+              ) : null}
+
+              {/* The cluster floats beside the composer the way the app's panel
+                  floats beside a field: it is not inside the window. */}
+              <span className="hero-cluster">
+                <CaretCluster pins={PINS} onRun={goTo} />
               </span>
-            ) : null}
+            </DesktopStage>
+          </div>
 
-            {/* The cluster floats beside the composer the way the app's panel
-                floats beside a field: it is not inside the window. */}
-            <span className="hero-cluster">
-              <CaretCluster pins={PINS} onRun={goTo} />
-            </span>
-          </DesktopStage>
+          <p className="hero-caption">
+            A concept demo. The completions are samples written into this page, not a live
+            model. Type something it does not know and it stays quiet.
+          </p>
         </div>
 
         {/* The context control. This is the demonstration, so it is a real
-            control under the stage rather than a claim in a paragraph. */}
+            control rather than a claim in a paragraph, and it is the hero's
+            only control. */}
         <div className="hero-context">
           <fieldset className="hero-context__set">
-            <legend className="hero-context__legend">What else is open</legend>
-            {CONTEXTS.map((c) => (
-              <label key={c.id} className="hero-context__opt" data-on={c.id === context || undefined}>
-                <input
-                  type="radio"
-                  name="hero-context"
-                  value={c.id}
-                  checked={c.id === context}
-                  onChange={() => {
-                    setContext(c.id);
-                    setPlaying(false);
-                  }}
-                />
-                {c.label}
-              </label>
-            ))}
+            <legend className="section-label hero-context__legend">What else is open</legend>
+            <div className="hero-context__track">
+              {CONTEXTS.map((c) => (
+                <label key={c.id} className="hero-context__opt" data-on={c.id === context || undefined}>
+                  <input
+                    type="radio"
+                    name="hero-context"
+                    value={c.id}
+                    checked={c.id === context}
+                    onChange={() => {
+                      setContext(c.id);
+                      setPlaying(false);
+                    }}
+                  />
+                  {c.label}
+                </label>
+              ))}
+            </div>
           </fieldset>
 
           <p className="hero-context__note">{preset.note}</p>
 
           <button
             type="button"
-            className="hero-replay"
+            className="text-link hero-replay"
             onClick={() => {
               setRun((r) => r + 1);
               setPlaying(true);
@@ -163,11 +168,6 @@ export function Hero() {
             {playing ? "Replay" : "Start over"}
           </button>
         </div>
-
-        <p className="hero-caption">
-          A concept demo. The completions are samples written into this page, not a live
-          model. Type something it does not know and it stays quiet.
-        </p>
       </div>
     </section>
   );

@@ -205,9 +205,9 @@ export function HowItWorks() {
   return (
     <section id="how" className="section how section-shell" ref={section}>
       <div className="page-container">
-        <h2 className="editorial-title how-heading">
+        <h2 className="how-heading">
           One loop, two decisions, and{" "}
-          <em className="glass-text glass-text--flow editorial-accent">a Tab key.</em>
+          <em className="editorial-accent">a Tab key.</em>
         </h2>
 
         <div className="how-grid">

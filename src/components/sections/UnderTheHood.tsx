@@ -31,7 +31,7 @@ export function UnderTheHood() {
   return (
     <section id="inside" className="section inside section-shell">
       <div className="page-container">
-        <h2 className="editorial-title">Code owns the branches. The model picks one.</h2>
+        <h2>Code owns the branches. The model picks one.</h2>
         <p className="editorial-standfirst inside__lede">
           Caret asks Jev one question about what is on your screen, and the judge may
           answer three ways. Everything it could pick was written down first.

@@ -48,7 +48,7 @@ function Stage({
       onPointerDownCapture={takeOver} onFocusCapture={takeOver} onKeyDown={onKeyDown}>
       <div className="wf__text">
         <span className="wf__mark">{mark}</span>
-        <h3 className="editorial-title wf__title">{title}</h3>
+        <h3 className="wf__title">{title}</h3>
         <p className="wf__body">{body}</p>
         <div className="wf__controls">{controls}</div>
       </div>
@@ -546,7 +546,7 @@ export function Workflows() {
   return (
     <section id="workflows" className="section workflows section-shell">
       <div className="page-container">
-        <h2 className="editorial-title">Three workflows, one shape.</h2>
+        <h2>Three workflows, one shape.</h2>
         <p className="editorial-standfirst workflows__lede">
           Ordinary code, with a judgement call only where one is needed. Each runs here on
           the repository's sample data.
