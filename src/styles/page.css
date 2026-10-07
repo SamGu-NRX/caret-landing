@@ -1436,72 +1436,22 @@
     margin-top: 32px;
   }
 
-  .closing__band {
-    position: relative;
-    overflow: hidden;
-    margin-top: clamp(3rem, 7vw, 5rem);
-    height: clamp(160px, 22vw, 280px);
-    background: var(--dusk);
-  }
-
-  .closing__band img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 78%;
-    image-rendering: pixelated;
-  }
-
-  .closing__band-caption {
-    position: absolute;
-    left: var(--page-gutter);
-    bottom: 0.9rem;
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
-    color: rgba(238, 237, 244, 0.82);
-  }
-
   /* ----------------------------------------------------------- footer */
 
+  /* One quiet row on the rail. The page ends on the closing's button, not
+     on a picture or a giant wordmark. */
   .site-footer {
-    padding-block: clamp(2.5rem, 6vw, 4rem) 1.75rem;
+    padding-block: var(--section) 32px;
   }
 
   .footer-meta {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    gap: 0.75rem 1.5rem;
-    margin-top: 2rem;
+    gap: 0.5rem 1.5rem;
     color: var(--color-text-tertiary);
     font-size: 0.8125rem;
-  }
-
-  .footer-wordmark {
-    display: flex;
-    align-items: baseline;
-    font-family: var(--font-serif);
-    font-size: clamp(3rem, 36vw, 27rem);
-    font-weight: 500;
-    line-height: 0.92;
-    letter-spacing: -0.045em;
-    color: var(--color-text-primary);
-  }
-
-  .footer-caret {
-    display: inline-block;
-    width: 0.055em;
-    height: 0.72em;
-    margin-left: 0.06em;
-    background: var(--color-accent);
-    animation: caret-blink 1.1s steps(1) infinite;
-  }
-
-  @keyframes caret-blink {
-    50% {
-      opacity: 0;
-    }
   }
 
   /* ------------------------------------------------------------ narrow */
@@ -1583,8 +1533,7 @@
     .calw__hold,
     .wf-window--safari,
     .wf-cluster,
-    .austin__bubble,
-    .footer-caret {
+    .austin__bubble {
       animation: none;
     }
 

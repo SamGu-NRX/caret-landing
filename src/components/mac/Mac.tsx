@@ -14,8 +14,8 @@ import type { CSSProperties, ReactNode } from "react";
 import { SparkleGlyph } from "../caret-ui/CaretUI";
 import { Chevron, ChevronLeft } from "../Icons";
 
-export const WALLPAPER = `${import.meta.env.BASE_URL}art/austin-dusk.png`;
-export const WALLPAPER_ALT =
+const WALLPAPER = `${import.meta.env.BASE_URL}art/austin-dusk.png`;
+const WALLPAPER_ALT =
   "Pixel-art illustration of Austin at dusk from the south bank of Lady Bird Lake: the Congress Avenue bridge with bats lifting off, downtown towers with lit windows, the Capitol dome, an indigo sky fading to peach at the horizon.";
 
 /* The same painting as one-colour ink, from tools/ink-print.mjs. */

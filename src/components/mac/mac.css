@@ -230,17 +230,18 @@
   /* ------------------------------------------------ product surfaces */
 
   /* The app draws its strip, menu and preview card on macOS's
-     ultraThinMaterial. Over a picture of a desktop that reads as a nearly
-     opaque white sheet with a hairline edge and a window's shadow, so that is
-     what is drawn here. CaretUI.tsx names these two classes; the specular, rim
-     and tinted cast they used to carry came out with material.css. */
+     ultraThinMaterial. Without a backdrop blur, any translucency lets the
+     window text underneath show through the card, so the page draws the
+     material as an opaque white sheet with a hairline edge and a window's
+     shadow. CaretUI.tsx names these two classes; the specular, rim and tinted
+     cast they used to carry came out with material.css. */
   :root {
     --pill-raised-ink: #f9f7f2; /* 8.82:1 on the accent */
   }
 
   .pill-glass {
     position: relative;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--window);
     box-shadow:
       0 0 0 1px rgba(23, 24, 28, 0.1),
       0 10px 24px -12px rgba(23, 24, 28, 0.45);
