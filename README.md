@@ -19,11 +19,11 @@ no server, no backend, and no analytics.
 
 ## What is on the page
 
-Nav, hero, a key legend, a four-step sticky explainer, three workflow stages,
-"Under the hood", "Built at a hackathon in Austin", a closing, and the footer.
-The page is a Mac desktop: pixel-art Austin as wallpaper, real-looking app
-windows over it, and the only thing Caret adds to any of them is a 40px blue
-asterisk with a glass strip beside it.
+Nav, hero, a key legend, three workflow stages, "Under the hood" (which opens
+with the four steps of the loop), "Built at a hackathon in Austin", a closing,
+and the footer. Each demo is a Mac desktop: pixel-art Austin as wallpaper,
+real-looking app windows over it, and the only thing Caret adds to any of them
+is a 40px blue asterisk with its pinned strip beside it.
 
 ### The hero demo is the argument
 
@@ -57,8 +57,8 @@ Reduced motion disables autoplay and resolves the flight animation immediately.
 work because the controls are a native `<textarea>`, `<button>`, `<input
 type="radio">`, `<details>` and a `role="menu"`, so the keys belong to whatever
 the visitor has focused. The real app owns a system shortcut; a web page should
-not take one. The only global listeners in `src/` are a passive scroll listener
-for the parallax and a pointerdown for click-outside on the menu.
+not take one. The only document listener in `src/` is a pointerdown for
+click-outside on the menu.
 
 Two invariants worth re-checking after any edit: Tab inside the composer must
 leave the field when there is no offer and must not when there is, and no
@@ -66,56 +66,51 @@ leave the field when there is no offer and must not when there is, and no
 
 ## Where the design comes from
 
-The glass text treatment and the button material were built and measured in
-another project and are reused here rather than reinvented:
+The page is built the way the BaseScanning landing page is
+(`house-scanning-landing`, its `styles.css` and `DESIGN.md`), in Caret's own
+paper, ink and typefaces. The kgu.one design handoff that asked for it,
+`HANDOFF-caret.md`, lists the rules; in short:
 
-| File here | Ported from `cluely-manifesto-clone` |
-| --- | --- |
-| `src/components/glass-text/*` | `src/components/glass-text/*` |
-| `src/components/material.css` | `src/styles/lander/material.css` |
-| `src/styles/editorial.css` | the type rules in `src/styles/lander/editorial.css` |
+- **One left edge.** `.page-container` is 1280px wide with 56px gutters (36px
+  at 980 and below, 20px at 760 and below). The wordmark, the headline and
+  every section heading start on it.
+- **Two typefaces, one display weight.** Newsreader 500 for `h1` and `h2`
+  only, at BaseScanning's scale (`tokens.css`). Schibsted Grotesk for
+  everything else. The mono appears only where the page depicts a keycap or a
+  clock time.
+- **One flat button shape.** `.button` is the 54px accent capsule, `.control`
+  the 44px pale one, `.text-link` an underlined link. All press to 0.97 over
+  140ms; hover changes colour only, and only for a real pointer. The focus ring
+  is 3px of the accent at a 4px offset.
+- **One section gap**, `--section`: 112px, 80px on phones.
+- **Motion plays once.** The demos script themselves once and hand over;
+  nothing loops, and scroll position drives nothing.
+
+This page used to wear glass ported from the Sillion lander: glossy buttons
+with a blue glow, a three-layer cast on "an asterisk.", and a glass header.
+That material is gone. `src/components/caret-ui/` still names `.pill-glass`
+and `.pill-raised`, because it redraws the product's own strip, menu and
+preview card; `mac.css` now draws those as flat surfaces.
 
 `src/components/caret-ui/` is not ported: it redraws the product's own controls
 from `apps/mac/Sources/Caret/TriggerButton.swift` and `PinnedActionsStore.swift`
-at the sizes those files declare. The glass under them is the same
-`.pill-glass` face, so the product's material and the page's are one material.
+at the sizes those files declare.
 
-Those files keep their original comments, which explain why each layer is
-built the way it is. Three things changed in the port, all mechanical:
-
-1. The palette moved from forest green to Caret's ink blue.
-2. The dark theme came out, because this page is light only. Nothing else
-   about the construction changed, so re-adding a theme means supplying the
-   token block again.
-3. `book-demo-button` was renamed `action-button`, and the unused second CTA
-   tier (`pill-cta-soft`) was dropped.
-
-Every contrast figure quoted in those files was re-measured against the new
-palette. `tools/measure-contrast.py` samples the real composite the browser
-paints (the base radial, then the specular through `overlay`, then the hover
-layer) and reports the worst sample inside the glyph footprint:
-
-```sh
-python3 tools/measure-contrast.py
-```
-
-The blue holds AA on every button state including hover, which the source
-palette could not; the note at the top of `material.css` has the numbers.
+Contrast ratios are noted beside each colour in `src/styles/tokens.css`. Text
+sits on flat colour everywhere, so the ratio computed from the hex values is
+what the screen shows.
 
 ## Layout notes
 
 `src/index.css` declares `@layer base, components, page` before anything else.
-The ported files assume a layer order that Tailwind used to supply; without
-that line, unlayered rules would outrank the material regardless of
-specificity.
+Without that line, unlayered rules would outrank the layered ones regardless
+of specificity.
 
-The page uses one measure (`--page-max-width: 1200px`), so the header pill, the
-hero copy, every stage and the footer wordmark land on the same rails.
-
-Breakpoints that mean something: at 900 the how-it-works stage stops being
-sticky and each step carries its own frame inline, and the workflow stages go
-from two columns to stacked. At 640 the pinned strip folds away beside a field
-and the sparkle carries the actions through its menu to leave room for the field.
+Breakpoints that mean something: at 1100 the hero becomes two columns, with
+the demo beside the headline. At 900 the workflow stages go from stacked to
+two columns, and the nav links appear. At 640 the pinned strip folds away
+beside a field and the sparkle carries the actions through its menu to leave
+room for the field.
 
 One trap worth knowing about: `.mac-stage` sets `position: relative` in
 `mac.css`, which is imported after `page.css` into the same layer. A bare
@@ -125,10 +120,19 @@ parent (`.wf__stage .mac-stage`) so they win on specificity instead.
 
 ## Art
 
-`public/art/austin-dusk.png` is the desktop wallpaper, the backdrop of every
-stage, and the closing band. `public/art/pershing-hall.png` is the Austin
-section. Both are illustrations, not photographs, and both are drawn with
+`public/art/austin-dusk.png` is the desktop wallpaper.
+`public/art/austin-dusk-ink.webp` is the same painting printed in one ink blue,
+written by `tools/ink-print.mjs` (its header has the recipe and how to run it).
+`public/art/pershing-hall.png` is the Austin section. All three are
+illustrations, not photographs, and all are drawn with
 `image-rendering: pixelated` because any smoothing turns the dithering to mud.
+
+`PAINTING` in `src/components/mac/Mac.tsx` decides where the wallpaper appears.
+`"A"` (the default) shows it in full colour behind the hero only and puts the
+ink print behind every other desktop, so the colour appears once and the
+working demo stays the brightest thing on the page. `"B"` uses the ink print
+everywhere; `"C"` drops the painting for a flat desktop. The Austin
+illustration is not affected.
 
 ## Dependencies
 

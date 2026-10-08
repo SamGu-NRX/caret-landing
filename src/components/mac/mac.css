@@ -11,6 +11,15 @@
     box-shadow: var(--window-shadow);
   }
 
+  /* Painting option C (see PAINTING in Mac.tsx): no wallpaper, just a flat
+     desktop with a hairline edge. */
+  .mac-stage[data-paper="none"] {
+    background: #e9e7e0;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  /* Still. It used to zoom 4% over 24 seconds forever, which made the
+     nearest-neighbour pixels crawl and kept every stage moving. */
   .mac-stage__paper {
     position: absolute;
     inset: 0;
@@ -20,28 +29,6 @@
     object-position: 50% 70%;
     /* Pixel art. Any smoothing turns the dithering into mud. */
     image-rendering: pixelated;
-    animation: mac-drift 24s ease-in-out infinite alternate;
-    transform-origin: 65% 65%;
-  }
-
-  /* The wallpaper and the windows move at different rates as the section
-     scrolls, which is the whole of the depth effect. `--stage-p` is written by
-     the section that owns the stage. */
-  .mac-stage__paper[data-parallax] {
-    translate: 0 calc(var(--stage-p, 0) * -40px);
-  }
-
-  .mac-stage__layer[data-parallax] {
-    translate: 0 calc(var(--stage-p, 0) * -16px);
-  }
-
-  @keyframes mac-drift {
-    from {
-      scale: 1;
-    }
-    to {
-      scale: 1.04;
-    }
   }
 
   .mac-stage__dim {
@@ -218,6 +205,9 @@
 
   /* ---------------------------------------------------- concept chip */
 
+  /* The page's own label on a picture, so it is in the page's face, flat.
+     Ink at 0.8 on the 0.92 white measured 8.37:1 at its worst pixel over the
+     hero's full-colour painting. */
   .mac-concept {
     position: absolute;
     left: 12px;
@@ -228,14 +218,14 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 3px 9px 3px 7px;
+    padding: 3px 10px 3px 8px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(10px);
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.04em;
-    color: rgba(23, 24, 28, 0.72);
+    background: rgba(255, 255, 255, 0.92);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: rgba(23, 24, 28, 0.8);
   }
 
   .mac-concept svg {
@@ -243,17 +233,62 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .mac-stage__paper {
-      animation: none;
-    }
-
-    .mac-stage__paper[data-parallax],
-    .mac-stage__layer[data-parallax] {
-      translate: none;
-    }
-
     .mac-tab {
       transition: none;
+    }
+  }
+}
+
+/* ---------------------------------------------------- product surfaces
+
+   The app draws its strip, menu and preview card on macOS's
+   ultraThinMaterial. Without a backdrop blur, any translucency lets the window
+   text underneath show through the card, so the page draws the material as an
+   opaque white sheet with a hairline edge and a window's shadow. CaretUI.tsx
+   names these two classes; the specular, rim and tinted cast they used to
+   carry came out with material.css.
+
+   These sit in `components`, below `page`, as the old material did: caret-ui.css
+   positions the menu absolutely, and a surface rule in the same layer and
+   imported later would override it. */
+@layer components {
+  :root {
+    --pill-raised-ink: #f9f7f2; /* 8.82:1 on the accent */
+  }
+
+  .pill-glass {
+    background: var(--window);
+    box-shadow:
+      0 0 0 1px rgba(23, 24, 28, 0.1),
+      0 10px 24px -12px rgba(23, 24, 28, 0.45);
+  }
+
+  /* Press and hover as .button in tokens.css. */
+  .pill-raised {
+    background: var(--color-accent);
+    transition:
+      background-color 160ms ease,
+      transform 100ms var(--ease-out);
+  }
+
+  .pill-raised:active:not(:focus-visible) {
+    transform: scale(0.97);
+    transition-duration: 160ms, 140ms;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pill-raised:hover {
+      background: var(--color-accent-hover);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pill-raised {
+      transition: none;
+    }
+
+    .pill-raised:active:not(:focus-visible) {
+      transform: none;
     }
   }
 }
