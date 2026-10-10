@@ -186,6 +186,10 @@ async function main() {
 
     writeFileSync(resolve(checksDir, "links.json"), JSON.stringify(linkReport, null, 2) + "\n");
 
+    /* Milestone 2: the keyboard and motion checks run on the same preview. */
+    const { checkKeyboardAndMotion } = await import("./check-keyboard-motion.mjs");
+    await checkKeyboardAndMotion(failures);
+
     if (failures.length > 0) {
       console.error("\ncheck:site FAILED — findings:");
       for (const f of failures) console.error(`  ${JSON.stringify(f)}`);
