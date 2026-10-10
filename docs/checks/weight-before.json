@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-10-10T22:12:08.588Z",
+  "tool": "tools/check-weight.mjs",
+  "network": {
+    "profile": "Fast 4G (CDP Network.emulateNetworkConditions)",
+    "latencyMs": 150,
+    "downloadThroughput": 1179648,
+    "uploadThroughput": 196608
+  },
+  "browser": "playwright chromium, fresh context per run, cache disabled (CDP Network.setCacheDisabled)",
+  "deviceScaleFactor": 1,
+  "runsPerWidth": 5,
+  "settleMsAfterLoad": 1000,
+  "note": "totalBytes is the sum of encodedDataLength over every finished response; art bytes are matched on the response URL's file name. Screenshots for the pixel baseline were taken in a separate, unthrottled pass with prefers-reduced-motion: reduce, every image decoded, and animations disabled (deterministic state; identical settings for before and after).",
+  "viewports": {
+    "1440x900": {
+      "runs": [
+        {
+          "totalBytes": 3534305,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 885286,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [
+              "http://127.0.0.1:42867/art/austin-dusk-ink.webp"
+            ],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 3114447,
+          "requests": 8,
+          "failedRequests": 0,
+          "lcpMs": 2828,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 1
+        },
+        {
+          "totalBytes": 3534305,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 885286,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [
+              "http://127.0.0.1:42867/art/austin-dusk-ink.webp"
+            ],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 3114447,
+          "requests": 8,
+          "failedRequests": 0,
+          "lcpMs": 2816,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 2
+        },
+        {
+          "totalBytes": 3534305,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 885286,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [
+              "http://127.0.0.1:42867/art/austin-dusk-ink.webp"
+            ],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 3114447,
+          "requests": 8,
+          "failedRequests": 0,
+          "lcpMs": 2912,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 3
+        },
+        {
+          "totalBytes": 3534305,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 885286,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [
+              "http://127.0.0.1:42867/art/austin-dusk-ink.webp"
+            ],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 3114447,
+          "requests": 8,
+          "failedRequests": 0,
+          "lcpMs": 2856,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 4
+        },
+        {
+          "totalBytes": 3534305,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 885286,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [
+              "http://127.0.0.1:42867/art/austin-dusk-ink.webp"
+            ],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 3114447,
+          "requests": 8,
+          "failedRequests": 0,
+          "lcpMs": 2868,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 5
+        }
+      ],
+      "median": {
+        "isMedian": true,
+        "note": "median of the runs above; each figure is the median of its own samples, and lcpElement comes from the run whose LCP is the median",
+        "totalBytes": 3534305,
+        "totalArtBytes": 3114447,
+        "artBytes": {
+          "austin-dusk": 2229161,
+          "austin-dusk-ink": 885286,
+          "pershing-hall": 0
+        },
+        "lcpMs": 2856,
+        "lcpElement": {
+          "tag": "img",
+          "id": null,
+          "className": "mac-stage__paper",
+          "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+        }
+      },
+      "screenshot": "docs/checks/weight-before-1440.png"
+    },
+    "390x844": {
+      "runs": [
+        {
+          "totalBytes": 2649019,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 0,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 2229161,
+          "requests": 7,
+          "failedRequests": 0,
+          "lcpMs": 2944,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 1
+        },
+        {
+          "totalBytes": 2649019,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 0,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 2229161,
+          "requests": 7,
+          "failedRequests": 0,
+          "lcpMs": 2828,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 2
+        },
+        {
+          "totalBytes": 2649019,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 0,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 2229161,
+          "requests": 7,
+          "failedRequests": 0,
+          "lcpMs": 2836,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 3
+        },
+        {
+          "totalBytes": 2649019,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 0,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 2229161,
+          "requests": 7,
+          "failedRequests": 0,
+          "lcpMs": 2848,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 4
+        },
+        {
+          "totalBytes": 2649019,
+          "artBytes": {
+            "austin-dusk": 2229161,
+            "austin-dusk-ink": 0,
+            "pershing-hall": 0
+          },
+          "artUrls": {
+            "austin-dusk": [
+              "http://127.0.0.1:42867/art/austin-dusk.png"
+            ],
+            "austin-dusk-ink": [],
+            "pershing-hall": []
+          },
+          "totalArtBytes": 2229161,
+          "requests": 7,
+          "failedRequests": 0,
+          "lcpMs": 2844,
+          "lcpElement": {
+            "tag": "img",
+            "id": null,
+            "className": "mac-stage__paper",
+            "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+          },
+          "run": 5
+        }
+      ],
+      "median": {
+        "isMedian": true,
+        "note": "median of the runs above; each figure is the median of its own samples, and lcpElement comes from the run whose LCP is the median",
+        "totalBytes": 2649019,
+        "totalArtBytes": 2229161,
+        "artBytes": {
+          "austin-dusk": 2229161,
+          "austin-dusk-ink": 0,
+          "pershing-hall": 0
+        },
+        "lcpMs": 2844,
+        "lcpElement": {
+          "tag": "img",
+          "id": null,
+          "className": "mac-stage__paper",
+          "src": "http://127.0.0.1:42867/art/austin-dusk.png"
+        }
+      },
+      "screenshot": "docs/checks/weight-before-390.png"
+    }
+  }
+}
