@@ -1,48 +1,37 @@
 {
-  "cls": 0.015563924313447008,
+  "cls": 0.000006284847427229675,
   "shifts": [
     {
-      "value": 0.015557639466019778,
-      "startTime": 220,
-      "sources": [
-        "DIV.mac-stage",
-        "DIV.hero-actions",
-        "DIV.mac-menubar",
-        "NAV.header-nav",
-        "I.caret-bar"
-      ]
-    },
-    {
       "value": 5.831301736604853e-7,
-      "startTime": 247,
+      "startTime": 230,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 1.9437672455349505e-7,
-      "startTime": 297,
+      "startTime": 279,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 1.9437672455349505e-7,
-      "startTime": 347,
+      "startTime": 346,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 5.183379321426536e-7,
-      "startTime": 413,
+      "startTime": 396,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 1.9437672455349505e-7,
-      "startTime": 463,
+      "startTime": 446,
       "sources": [
         "SPAN.rc__cursor"
       ]
@@ -56,21 +45,21 @@
     },
     {
       "value": 4.5354569062482186e-7,
-      "startTime": 580,
+      "startTime": 563,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 2.591689660713268e-7,
-      "startTime": 630,
+      "startTime": 613,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 1.9437672455349505e-7,
-      "startTime": 680,
+      "startTime": 663,
       "sources": [
         "SPAN.rc__cursor"
       ]
@@ -84,7 +73,7 @@
     },
     {
       "value": 4.5354569062482186e-7,
-      "startTime": 1396,
+      "startTime": 1379,
       "sources": [
         "SPAN.rc__cursor"
       ]
@@ -98,14 +87,14 @@
     },
     {
       "value": 2.591689660713268e-7,
-      "startTime": 1513,
+      "startTime": 1496,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 4.5354569062482186e-7,
-      "startTime": 1563,
+      "startTime": 1546,
       "sources": [
         "SPAN.rc__cursor"
       ]
@@ -119,21 +108,21 @@
     },
     {
       "value": 2.591689660713268e-7,
-      "startTime": 1680,
+      "startTime": 1663,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 4.5354569062482186e-7,
-      "startTime": 1730,
+      "startTime": 1713,
       "sources": [
         "SPAN.rc__cursor"
       ]
     },
     {
       "value": 1.9437672455349505e-7,
-      "startTime": 1780,
+      "startTime": 1763,
       "sources": [
         "SPAN.rc__cursor"
       ]

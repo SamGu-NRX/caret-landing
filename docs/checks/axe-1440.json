@@ -13,7 +13,7 @@
     "orientationAngle": 0,
     "orientationType": "landscape-primary"
   },
-  "timestamp": "2026-10-10T19:27:37.367Z",
+  "timestamp": "2026-10-10T19:34:53.039Z",
   "url": "http://localhost:4173/",
   "toolOptions": {
     "reporter": "v1"
@@ -5679,6 +5679,106 @@
             {
               "id": "color-contrast",
               "data": {
+                "fgColor": "#535457",
+                "bgColor": "#dfdfe0",
+                "contrastRatio": 5.68,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 5.68"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span class=\"mac-tab\">AUS to DFW</span>",
+          "target": [
+            ".mac-tab:nth-child(2)"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#535457",
+                "bgColor": "#dfdfe0",
+                "contrastRatio": 5.68,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 5.68"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span class=\"mac-tab\">Stay in Deep Ellum</span>",
+          "target": [
+            ".mac-tab:nth-child(3)"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#535457",
+                "bgColor": "#dfdfe0",
+                "contrastRatio": 5.68,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 5.68"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span class=\"mac-tab\">Things to do in Dallas</span>",
+          "target": [
+            ".mac-tab:nth-child(4)"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#58595c",
+                "bgColor": "#f1f1f1",
+                "contrastRatio": 6.2,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 6.2"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span class=\"mac-urlbar__field\">mail.google.com</span>",
+          "target": [
+            ".hero-browser > .mac-urlbar[aria-hidden=\"true\"] > .mac-urlbar__field"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
                 "fgColor": "#17181c",
                 "bgColor": "#ffffff",
                 "contrastRatio": 17.73,
@@ -5704,6 +5804,56 @@
             {
               "id": "color-contrast",
               "data": {
+                "fgColor": "#5d5d60",
+                "bgColor": "#ffffff",
+                "contrastRatio": 6.56,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 6.56"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<p class=\"hero-thread__from\">Alex Rivera &lt;alex@example.com&gt;<span>Sat, Sep 19</span></p>",
+          "target": [
+            ".hero-thread__from"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#5d5d60",
+                "bgColor": "#ffffff",
+                "contrastRatio": 6.56,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 6.56"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span>Sat, Sep 19</span>",
+          "target": [
+            ".hero-thread__from > span"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
                 "fgColor": "#454649",
                 "bgColor": "#ffffff",
                 "contrastRatio": 9.43,
@@ -5722,6 +5872,31 @@
           "html": "<p class=\"hero-thread__body\">Hey — are you around next week? Let me know what makes sense on your end.</p>",
           "target": [
             ".hero-thread__body"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#656669",
+                "bgColor": "#f7f8f9",
+                "contrastRatio": 5.39,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 5.39"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<div class=\"rc__head\" aria-hidden=\"true\">To: Alex Rivera</div>",
+          "target": [
+            ".rc__head"
           ]
         },
         {
@@ -6454,6 +6629,31 @@
             {
               "id": "color-contrast",
               "data": {
+                "fgColor": "#656669",
+                "bgColor": "#f7f8f9",
+                "contrastRatio": 5.39,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 5.39"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<div class=\"mailw__reply\">Reply</div>",
+          "target": [
+            ".mailw__reply"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
                 "fgColor": "#17181c",
                 "bgColor": "#f9f7f2",
                 "contrastRatio": 16.56,
@@ -6554,6 +6754,31 @@
             {
               "id": "color-contrast",
               "data": {
+                "fgColor": "#58595c",
+                "bgColor": "#f1f1f1",
+                "contrastRatio": 6.2,
+                "fontSize": "8.3pt (11px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 6.2"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span class=\"mac-urlbar__field\">mail.google.com</span>",
+          "target": [
+            ".wf-window--gmail > .mac-urlbar[aria-hidden=\"true\"] > .mac-urlbar__field"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
                 "fgColor": "#17181c",
                 "bgColor": "#ffffff",
                 "contrastRatio": 17.73,
@@ -6629,6 +6854,31 @@
             {
               "id": "color-contrast",
               "data": {
+                "fgColor": "#656669",
+                "bgColor": "#f7f8f9",
+                "contrastRatio": 5.39,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 5.39"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<div class=\"calw__composer\">Reply</div>",
+          "target": [
+            ".calw__composer"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
                 "fgColor": "#747477",
                 "bgColor": "#ffffff",
                 "contrastRatio": 4.65,
@@ -6647,6 +6897,31 @@
           "html": "<p class=\"calw__day\">Tue 22</p>",
           "target": [
             ".calw__day"
+          ]
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#27282c",
+                "bgColor": "#b8b8b9",
+                "contrastRatio": 7.42,
+                "fontSize": "6.0pt (8px)",
+                "fontWeight": "normal",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element has sufficient color contrast of 7.42"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": null,
+          "html": "<span class=\"calw__busy\" style=\"top: 0%; height: 12.5%;\">Busy</span>",
+          "target": [
+            ".calw__busy"
           ]
         },
         {
@@ -16334,443 +16609,5 @@
       ]
     }
   ],
-  "violations": [
-    {
-      "id": "color-contrast",
-      "impact": "serious",
-      "tags": [
-        "cat.color",
-        "wcag2aa",
-        "wcag143",
-        "TTv5",
-        "TT13.c",
-        "EN-301-549",
-        "EN-9.1.4.3",
-        "ACT",
-        "RGAAv4",
-        "RGAA-3.2.1"
-      ],
-      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
-      "help": "Elements must meet minimum color contrast ratio thresholds",
-      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
-      "nodes": [
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#717274",
-                "bgColor": "#dfdfe0",
-                "contrastRatio": 3.61,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<span class=\"mac-tab\">AUS to DFW</span>",
-                  "target": [
-                    ".mac-tab:nth-child(2)"
-                  ]
-                },
-                {
-                  "html": "<div class=\"mac-window__bar mac-window__bar--browser\">",
-                  "target": [
-                    ".hero-browser > .mac-window__bar--browser.mac-window__bar"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.61 (foreground color: #717274, background color: #dfdfe0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"mac-tab\">AUS to DFW</span>",
-          "target": [
-            ".mac-tab:nth-child(2)"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #717274, background color: #dfdfe0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#717274",
-                "bgColor": "#dfdfe0",
-                "contrastRatio": 3.61,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<span class=\"mac-tab\">Stay in Deep Ellum</span>",
-                  "target": [
-                    ".mac-tab:nth-child(3)"
-                  ]
-                },
-                {
-                  "html": "<div class=\"mac-window__bar mac-window__bar--browser\">",
-                  "target": [
-                    ".hero-browser > .mac-window__bar--browser.mac-window__bar"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.61 (foreground color: #717274, background color: #dfdfe0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"mac-tab\">Stay in Deep Ellum</span>",
-          "target": [
-            ".mac-tab:nth-child(3)"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #717274, background color: #dfdfe0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#717274",
-                "bgColor": "#dfdfe0",
-                "contrastRatio": 3.61,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<span class=\"mac-tab\">Things to do in Dallas</span>",
-                  "target": [
-                    ".mac-tab:nth-child(4)"
-                  ]
-                },
-                {
-                  "html": "<div class=\"mac-window__bar mac-window__bar--browser\">",
-                  "target": [
-                    ".hero-browser > .mac-window__bar--browser.mac-window__bar"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.61 (foreground color: #717274, background color: #dfdfe0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"mac-tab\">Things to do in Dallas</span>",
-          "target": [
-            ".mac-tab:nth-child(4)"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.61 (foreground color: #717274, background color: #dfdfe0, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#797a7c",
-                "bgColor": "#f1f1f1",
-                "contrastRatio": 3.8,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<span class=\"mac-urlbar__field\">mail.google.com</span>",
-                  "target": [
-                    ".hero-browser > .mac-urlbar[aria-hidden=\"true\"] > .mac-urlbar__field"
-                  ]
-                },
-                {
-                  "html": "<div class=\"mac-urlbar\" aria-hidden=\"true\">",
-                  "target": [
-                    ".hero-browser > .mac-urlbar[aria-hidden=\"true\"]"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.8 (foreground color: #797a7c, background color: #f1f1f1, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"mac-urlbar__field\">mail.google.com</span>",
-          "target": [
-            ".hero-browser > .mac-urlbar[aria-hidden=\"true\"] > .mac-urlbar__field"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.8 (foreground color: #797a7c, background color: #f1f1f1, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#7f8082",
-                "bgColor": "#ffffff",
-                "contrastRatio": 3.95,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<div class=\"mac-window hero-browser\">",
-                  "target": [
-                    ".hero-browser"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.95 (foreground color: #7f8082, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<p class=\"hero-thread__from\">Alex Rivera &lt;alex@example.com&gt;<span>Sat, Sep 19</span></p>",
-          "target": [
-            ".hero-thread__from"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #7f8082, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#7f8082",
-                "bgColor": "#ffffff",
-                "contrastRatio": 3.95,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<div class=\"mac-window hero-browser\">",
-                  "target": [
-                    ".hero-browser"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.95 (foreground color: #7f8082, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span>Sat, Sep 19</span>",
-          "target": [
-            ".hero-thread__from > span"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #7f8082, background color: #ffffff, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#87888b",
-                "bgColor": "#f7f8f9",
-                "contrastRatio": 3.33,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<div class=\"rc\">",
-                  "target": [
-                    ".rc"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.33 (foreground color: #87888b, background color: #f7f8f9, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<div class=\"rc__head\" aria-hidden=\"true\">To: Alex Rivera</div>",
-          "target": [
-            ".rc__head"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.33 (foreground color: #87888b, background color: #f7f8f9, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#999a9c",
-                "bgColor": "#f7f8f9",
-                "contrastRatio": 2.64,
-                "fontSize": "9.0pt (12px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<div class=\"mailw__reply\">Reply</div>",
-                  "target": [
-                    ".mailw__reply"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 2.64 (foreground color: #999a9c, background color: #f7f8f9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<div class=\"mailw__reply\">Reply</div>",
-          "target": [
-            ".mailw__reply"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #999a9c, background color: #f7f8f9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#797a7c",
-                "bgColor": "#f1f1f1",
-                "contrastRatio": 3.8,
-                "fontSize": "8.3pt (11px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<span class=\"mac-urlbar__field\">mail.google.com</span>",
-                  "target": [
-                    ".wf-window--gmail > .mac-urlbar[aria-hidden=\"true\"] > .mac-urlbar__field"
-                  ]
-                },
-                {
-                  "html": "<div class=\"mac-urlbar\" aria-hidden=\"true\">",
-                  "target": [
-                    ".wf-window--gmail > .mac-urlbar[aria-hidden=\"true\"]"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 3.8 (foreground color: #797a7c, background color: #f1f1f1, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"mac-urlbar__field\">mail.google.com</span>",
-          "target": [
-            ".wf-window--gmail > .mac-urlbar[aria-hidden=\"true\"] > .mac-urlbar__field"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.8 (foreground color: #797a7c, background color: #f1f1f1, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#999a9c",
-                "bgColor": "#f7f8f9",
-                "contrastRatio": 2.64,
-                "fontSize": "9.0pt (12px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<div class=\"calw__composer\">Reply</div>",
-                  "target": [
-                    ".calw__composer"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 2.64 (foreground color: #999a9c, background color: #f7f8f9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<div class=\"calw__composer\">Reply</div>",
-          "target": [
-            ".calw__composer"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #999a9c, background color: #f7f8f9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
-        },
-        {
-          "any": [
-            {
-              "id": "color-contrast",
-              "data": {
-                "fgColor": "#ffffff",
-                "bgColor": "#b8b8b9",
-                "contrastRatio": 1.98,
-                "fontSize": "6.0pt (8px)",
-                "fontWeight": "normal",
-                "messageKey": null,
-                "expectedContrastRatio": "4.5:1"
-              },
-              "relatedNodes": [
-                {
-                  "html": "<span class=\"calw__busy\" style=\"top: 0%; height: 12.5%;\">Busy</span>",
-                  "target": [
-                    ".calw__busy"
-                  ]
-                },
-                {
-                  "html": "<div class=\"calw__col\"><span class=\"calw__busy\" style=\"top: 0%; height: 12.5%;\">Busy</span></div>",
-                  "target": [
-                    ".calw__col"
-                  ]
-                },
-                {
-                  "html": "<div class=\"mac-window wf-window wf-window--gmail\" role=\"img\" aria-label=\"A mail thread asking for three meeting times, with a week column beside it\">",
-                  "target": [
-                    ".wf-window--gmail"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Element has insufficient color contrast of 1.98 (foreground color: #ffffff, background color: #b8b8b9, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<span class=\"calw__busy\" style=\"top: 0%; height: 12.5%;\">Busy</span>",
-          "target": [
-            ".calw__busy"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #ffffff, background color: #b8b8b9, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
-        }
-      ]
-    }
-  ]
+  "violations": []
 }

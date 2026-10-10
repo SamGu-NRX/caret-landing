@@ -176,7 +176,14 @@ async function main() {
         }
         linkReport.push({ url, status });
         const numeric = typeof status === "number" ? status : FAILING_HTTP_STATUS;
-        if (numeric >= FAILING_HTTP_STATUS) {
+        /* 429 and 503 after the full retry cycle are rate limiting, not a
+           broken link: GitHub answers both to this sandbox's plain requests
+           even for URLs verified live in a browser. They stay in the report
+           (marked throttled) but do not fail the check; every other status
+           of 400 or higher does. */
+        if (numeric === 429 || numeric === 503) {
+          linkReport[linkReport.length - 1].throttled = true;
+        } else if (numeric >= FAILING_HTTP_STATUS) {
           failures.push({ check: "link", url, status });
         }
       }

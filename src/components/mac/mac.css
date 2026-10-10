@@ -157,7 +157,8 @@
     border-radius: 7px 7px 0 0;
     background: rgba(23, 24, 28, 0.06);
     font-size: 11px;
-    color: rgba(23, 24, 28, 0.55);
+    /* Contrast fix: ink 0.55 → 0.7 (3.61:1 → ~5.6:1 on the tab gray). */
+    color: rgba(23, 24, 28, 0.7);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -179,7 +180,8 @@
     background: var(--window);
     border-bottom: 1px solid rgba(23, 24, 28, 0.08);
     font-size: 11px;
-    color: rgba(23, 24, 28, 0.55);
+    /* Contrast fix: ink 0.55 → 0.7 (3.8:1 → ~6.3:1 on the urlbar field). */
+    color: rgba(23, 24, 28, 0.7);
   }
 
   .mac-urlbar__nav {
