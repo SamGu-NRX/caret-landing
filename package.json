@@ -9,7 +9,9 @@
     "typecheck": "tsc -b --noEmit",
     "preview": "vite preview",
     "check:site": "node tools/check-site.mjs",
-    "og:image": "node tools/og-image.mjs"
+    "og:image": "node tools/og-image.mjs",
+    "icon:touch": "node tools/apple-touch-icon.mjs",
+    "check:meta": "node tools/check-meta.mjs"
   },
   "dependencies": {
     "@fontsource-variable/newsreader": "^5.3.0",
