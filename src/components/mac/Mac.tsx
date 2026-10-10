@@ -15,7 +15,9 @@ import type { CSSProperties, ReactNode } from "react";
 import { SparkleGlyph } from "../caret-ui/CaretUI";
 import { Chevron, ChevronLeft } from "../Icons";
 
-const WALLPAPER = `${import.meta.env.BASE_URL}art/austin-dusk.png`;
+/* The lossless WebP re-encode of tools/art-src/austin-dusk.png (same decoded
+ * pixels byte for byte; see tools/optimize-images.mjs). */
+const WALLPAPER = `${import.meta.env.BASE_URL}art/austin-dusk.webp`;
 const WALLPAPER_ALT =
   "Pixel-art illustration of Austin at dusk from the south bank of Lady Bird Lake: the Congress Avenue bridge with bats lifting off, downtown towers with lit windows, the Capitol dome, an indigo sky fading to peach at the horizon.";
 
@@ -122,6 +124,7 @@ export function DesktopStage({
           width={1536}
           height={1024}
           loading={hero ? "eager" : "lazy"}
+          decoding={hero ? undefined : "async"}
           fetchPriority={hero ? "high" : undefined}
           draggable={false}
           onLoad={hero ? settleHero : undefined}

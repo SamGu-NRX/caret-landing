@@ -1,0 +1,55 @@
+{
+  "how": "Usage from grep of src/ and a read of index.html at commit 86286479a6e7cabe98264c5632117e43fe5499a1; rendered sizes from a Playwright Chromium probe (boundingClientRect + naturalWidth after a full scroll-through) against a vite-preview build, at the two design widths. Rendered sizes are CSS px at DPR 1. Image bytes measured with stat on the files.",
+  "indexHtml": "No art image references (favicon.svg only). index.html was not modified by this task.",
+  "images": [
+    {
+      "source": "tools/art-src/austin-dusk.png",
+      "originalBytes": 2228890,
+      "usedBy": "src/components/mac/Mac.tsx — WALLPAPER, the hero desktop's colour painting (eager, fetchPriority high, settleHero load gating). This is the LCP element at both measured widths.",
+      "css": ".mac-stage__paper in src/components/mac/mac.css — image-rendering: pixelated, object-fit: cover; explicit width/height attributes (1536x1024) on the img.",
+      "renderedBoxes": {
+        "1440x900": [{ "box": "640x560", "topPx": 96, "loading": "eager" }],
+        "390x844": [{ "box": "350x467", "topPx": 547, "loading": "eager" }]
+      },
+      "shipping": "public/art/austin-dusk.webp — 1895394 B lossless WebP (libwebp effort 6), decoded raw pixels byte-for-byte identical to the original (tools/optimize-images.mjs identity check)."
+    },
+    {
+      "source": "tools/art-src/pershing-hall.png",
+      "originalBytes": 2453468,
+      "usedBy": "src/components/sections/Austin.tsx — HALL, the Austin section illustration; below the first screen at both widths.",
+      "css": ".austin__art in src/components/sections/sections.css — image-rendering: pixelated, object-fit: cover; no explicit width/height attributes (positioned absolute in a sized container, so no layout shift is possible).",
+      "renderedBoxes": {
+        "1440x900": [{ "box": "1168x657", "topPx": 4089, "loading": "lazy" }],
+        "390x844": [{ "box": "350x197", "topPx": 5912, "loading": "lazy" }]
+      },
+      "shipping": "public/art/pershing-hall.webp — 2034928 B lossless WebP (libwebp effort 6), decoded raw pixels byte-for-byte identical to the original (tools/optimize-images.mjs identity check)."
+    },
+    {
+      "source": "tools/art-src/austin-dusk-ink.webp",
+      "originalBytes": 885016,
+      "usedBy": "src/components/mac/Mac.tsx — the ink print behind every non-hero desktop (three instances on the full page); below the first screen at both widths.",
+      "css": ".mac-stage__paper — image-rendering: pixelated, object-fit: cover; explicit width/height attributes (1536x1024) on the img.",
+      "renderedBoxes": {
+        "1440x900": [
+          { "box": "653x449", "topPx": 1299, "loading": "lazy" },
+          { "box": "467x321", "topPx": 1828, "loading": "lazy" },
+          { "box": "653x449", "topPx": 2229, "loading": "lazy" }
+        ],
+        "390x844": [
+          { "box": "350x241", "topPx": 2194, "loading": "lazy" },
+          { "box": "350x241", "topPx": 2858, "loading": "lazy" },
+          { "box": "350x241", "topPx": 3524, "loading": "lazy" }
+        ]
+      },
+      "shipping": "public/art/austin-dusk-ink.webp — kept at its original 885016 B: the file was already lossless WebP (written by tools/ink-print.mjs), and a libwebp effort-6 re-encode produced a byte-identical file (cmp equal), so the original bytes stand."
+    }
+  ],
+  "decisions": {
+    "nativeSizeKept": "All three images are 1536x1024 native and are displayed via object-fit: cover crops with image-rendering: pixelated (largest rendered box: 1168x657 CSS px at 1440 width). Any resampling changes which source pixels are sampled, so no downscale — pixel-identity to the display pipeline is only guaranteed at native size.",
+    "palettePngRejected": "The two PNGs have 359808 and 435089 distinct RGB colours respectively (dithered truecolour gradients, counted from raw pixels) — far above a 256-colour palette, so palette reduction cannot be provably lossless here. This is the spec's own condition for allowing palette PNG.",
+    "avifRejected": "Lossless AVIF (libheif, sharp effort 4) produced larger files than lossless WebP on both PNGs (austin-dusk: 2062721 B vs 1895394 B; pershing-hall: 2286670 B vs 2034928 B) and took 33-44 s per image to encode.",
+    "noPictureElement": "Lossless WebP is served in the same <img> the site already used for WebP (the ink print), so the browser-support story is unchanged from the status quo; no fallback <picture> was added.",
+    "lazyAndDecoding": "Below-the-first-screen images: all ink instances and the Austin art already had loading=\"lazy\"; decoding=\"async\" was added to both editable spots (Mac.tsx conditional on !hero, Austin.tsx always). The hero keeps eager/high priority and no decoding attribute.",
+    "uneditableFiles": "None — no below-fold image lives only in index.html or src/main.tsx."
+  }
+}

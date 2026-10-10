@@ -120,10 +120,14 @@ parent (`.wf__stage .mac-stage`) so they win on specificity instead.
 
 ## Art
 
-`public/art/austin-dusk.png` is the desktop wallpaper.
+`public/art/austin-dusk.webp` is the desktop wallpaper, and
+`public/art/pershing-hall.webp` is the Austin section: lossless WebP re-encodes
+of the original PNGs, which live unchanged in `tools/art-src/`. Each decode is
+byte-for-byte identical to its original (`tools/optimize-images.mjs` is the
+replayable transform and identity check; `npm run check:images` re-proves it).
 `public/art/austin-dusk-ink.webp` is the same painting printed in one ink blue,
 written by `tools/ink-print.mjs` (its header has the recipe and how to run it).
-`public/art/pershing-hall.png` is the Austin section. All three are
+All three are
 illustrations, not photographs, and all are drawn with
 `image-rendering: pixelated` because any smoothing turns the dithering to mud.
 
