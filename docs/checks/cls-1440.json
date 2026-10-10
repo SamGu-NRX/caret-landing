@@ -1,0 +1,131 @@
+{
+  "cls": 0.0000015753600823045272,
+  "shifts": [
+    {
+      "value": 1.4467592592592592e-7,
+      "startTime": 215,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 265,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 315,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.286008230452675e-7,
+      "startTime": 365,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 432,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.286008230452675e-7,
+      "startTime": 482,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 9.645061728395061e-8,
+      "startTime": 531,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 598,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 649,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 698,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1365,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1415,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 1465,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1531,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1581,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 1631,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1698,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 1748,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    }
+  ]
+}

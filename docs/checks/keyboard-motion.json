@@ -1,0 +1,167 @@
+{
+  "results": [
+    {
+      "name": "composer: Tab with no suggestion leaves the field",
+      "pass": true,
+      "detail": {
+        "acceptButtonsVisible": 0,
+        "focusAfterTab": "BUTTON"
+      }
+    },
+    {
+      "name": "composer: Tab with a suggestion showing accepts it and focus stays",
+      "pass": true,
+      "detail": {
+        "valueGrew": true,
+        "focusAfterTab": "TEXTAREA",
+        "acceptButtonGone": true
+      }
+    },
+    {
+      "name": "composer: Escape dismisses a suggestion and the next Tab leaves the field",
+      "pass": true,
+      "detail": {
+        "suggestionDismissed": true,
+        "focusAfterTab": "BUTTON"
+      }
+    },
+    {
+      "name": "composer: Tab applies a correction offer and focus stays",
+      "pass": true,
+      "detail": {
+        "offerLabel": "Fix “teh” to “the”",
+        "valueEndsCorrectly": true,
+        "focusAfterTab": "TEXTAREA"
+      }
+    },
+    {
+      "name": "keyboard (1440px): every interactive element is reachable with Tab alone",
+      "pass": true,
+      "detail": {
+        "interactiveElements": 25,
+        "tabStopsObserved": 25,
+        "walkedToEnd": true,
+        "notReached": [],
+        "order": [
+          "Skip to content",
+          "Caret",
+          "Workflows",
+          "How it works",
+          "Austin",
+          "See the code",
+          "Try the demo",
+          "See the code",
+          "Reply to Alex Rivera",
+          "Caret actions",
+          "Book flight",
+          "Calendar link",
+          "Revise draft",
+          "",
+          "Start over",
+          "Select the paragraph",
+          "ok so the demo: we show the asterisk then tab then the fligh",
+          "Book a flight",
+          "Caret actions",
+          "Find three times",
+          "Caret actions",
+          "Read the pipeline contract",
+          "See the code",
+          "GitHub"
+        ]
+      }
+    },
+    {
+      "name": "keyboard (1440px): every focused control shows a visible focus indicator",
+      "pass": true,
+      "detail": {
+        "checked": 24,
+        "withoutIndicator": [],
+        "sampleDeltas": [
+          {
+            "label": "Skip to content",
+            "changed": [
+              "outlineStyle"
+            ]
+          },
+          {
+            "label": "Caret",
+            "changed": [
+              "outlineStyle"
+            ]
+          },
+          {
+            "label": "Workflows",
+            "changed": [
+              "outlineStyle"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "keyboard (390px): every interactive element is reachable with Tab alone",
+      "pass": true,
+      "detail": {
+        "interactiveElements": 19,
+        "tabStopsObserved": 19,
+        "walkedToEnd": true,
+        "notReached": [],
+        "order": [
+          "Skip to content",
+          "Caret",
+          "See the code",
+          "Try the demo",
+          "See the code",
+          "Reply to Alex Rivera",
+          "Caret actions",
+          "",
+          "Start over",
+          "Select the paragraph",
+          "ok so the demo: we show the asterisk then tab then the fligh",
+          "Book a flight",
+          "Caret actions",
+          "Find three times",
+          "Caret actions",
+          "Read the pipeline contract",
+          "See the code",
+          "GitHub"
+        ]
+      }
+    },
+    {
+      "name": "keyboard (390px): every focused control shows a visible focus indicator",
+      "pass": true,
+      "detail": {
+        "checked": 18,
+        "withoutIndicator": [],
+        "sampleDeltas": [
+          {
+            "label": "Skip to content",
+            "changed": [
+              "outlineStyle"
+            ]
+          },
+          {
+            "label": "Caret",
+            "changed": [
+              "outlineStyle"
+            ]
+          },
+          {
+            "label": "See the code",
+            "changed": [
+              "outlineStyle"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "motion: no animation still running 1s after load under prefers-reduced-motion",
+      "pass": true,
+      "detail": {
+        "runningAnimations": []
+      }
+    }
+  ]
+}
