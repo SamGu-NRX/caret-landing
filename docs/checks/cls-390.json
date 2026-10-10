@@ -1,0 +1,142 @@
+{
+  "cls": 0.015563924313447008,
+  "shifts": [
+    {
+      "value": 0.015557639466019778,
+      "startTime": 148,
+      "sources": [
+        "DIV.mac-stage",
+        "DIV.hero-actions",
+        "DIV.mac-menubar",
+        "NAV.header-nav",
+        "I.caret-bar"
+      ]
+    },
+    {
+      "value": 5.831301736604853e-7,
+      "startTime": 193,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.9437672455349505e-7,
+      "startTime": 243,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.9437672455349505e-7,
+      "startTime": 310,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 5.183379321426536e-7,
+      "startTime": 359,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.9437672455349505e-7,
+      "startTime": 409,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.5354569062482186e-7,
+      "startTime": 463,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.5354569062482186e-7,
+      "startTime": 526,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 2.591689660713268e-7,
+      "startTime": 576,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.9437672455349505e-7,
+      "startTime": 626,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 2.591689660713268e-7,
+      "startTime": 693,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.5354569062482186e-7,
+      "startTime": 1343,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.5354569062482186e-7,
+      "startTime": 1410,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 2.591689660713268e-7,
+      "startTime": 1460,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.5354569062482186e-7,
+      "startTime": 1510,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.5354569062482186e-7,
+      "startTime": 1560,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 2.591689660713268e-7,
+      "startTime": 1626,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.5354569062482186e-7,
+      "startTime": 1677,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.9437672455349505e-7,
+      "startTime": 1726,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    }
+  ]
+}

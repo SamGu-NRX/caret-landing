@@ -1,0 +1,146 @@
+{
+  "cls": 0.007134289534036354,
+  "shifts": [
+    {
+      "value": 0.006134566025805898,
+      "startTime": 162,
+      "sources": [
+        "DIV.hero-context",
+        "P.hero-standfirst",
+        "#text",
+        "SECTION.legend.section-shell",
+        "DIV.hero-actions"
+      ]
+    },
+    {
+      "value": 0.000998292824074074,
+      "startTime": 186,
+      "sources": [
+        "P.hero-standfirst",
+        "DIV.hero-context",
+        "#text",
+        "DIV.hero-actions",
+        "SECTION.legend.section-shell"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 199,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 231,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.286008230452675e-7,
+      "startTime": 298,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 348,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.286008230452675e-7,
+      "startTime": 398,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 9.645061728395061e-8,
+      "startTime": 465,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 515,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 4.8225308641975306e-8,
+      "startTime": 565,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 615,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 682,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1331,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 1398,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1448,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1498,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 1565,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 1.1252572016460905e-7,
+      "startTime": 1615,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    },
+    {
+      "value": 6.430041152263375e-8,
+      "startTime": 1664,
+      "sources": [
+        "SPAN.rc__cursor"
+      ]
+    }
+  ]
+}
