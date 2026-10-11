@@ -246,6 +246,17 @@
     color: var(--color-text-secondary);
     cursor: pointer;
     list-style: none;
+    position: relative;
+  }
+
+  /* The summary line is 72.7x19.2 px - far below the 24px minimum tap
+     target (WCAG 2.5.8). Extend its hit region with a transparent ::after
+     so the tappable area reaches 44 px tall and 80.7 px wide without
+     moving the visible UI or changing layout. */
+  .cu-card__why summary::after {
+    content: "";
+    position: absolute;
+    inset: -12.4px -4px;
   }
 
   .cu-card__why summary svg {
