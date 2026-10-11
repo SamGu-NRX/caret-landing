@@ -1,7 +1,6 @@
 import { SiteHeader } from "./components/SiteHeader";
 import { Hero } from "./components/hero/Hero";
 import { KeyLegend } from "./components/sections/KeyLegend";
-import { HowItWorks } from "./components/sections/HowItWorks";
 import { Workflows } from "./components/sections/Workflows";
 import { UnderTheHood } from "./components/sections/UnderTheHood";
 import { Austin } from "./components/sections/Austin";
@@ -19,7 +18,6 @@ export default function App() {
       <main id="main">
         <Hero />
         <KeyLegend />
-        <HowItWorks />
         <Workflows />
         <UnderTheHood />
         <Austin />

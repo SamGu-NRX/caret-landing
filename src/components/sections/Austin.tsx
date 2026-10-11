@@ -41,22 +41,13 @@ export function Austin() {
   return (
     <section id="austin" className="section austin section-shell">
       <div className="page-container">
-        <h2 className="editorial-title">Built at a hackathon in Austin.</h2>
+        <h2>Built at a hackathon in Austin.</h2>
         <p className="editorial-standfirst austin__lede">
           One day, one room, three workflows.
         </p>
 
         <div className="austin__scene">
           <img className="austin__art" src={HALL} alt={HALL_ALT} loading="lazy" />
-          <span className="austin__glow" aria-hidden />
-          <div className="austin__sparks" aria-hidden>
-            {Array.from({ length: 10 }, (_, i) => (
-              <i
-                key={i}
-                style={{ left: `${9 + i * 9}%`, top: `${28 + ((i * 17) % 48)}%`, animationDelay: `${i * -1.7}s` }}
-              />
-            ))}
-          </div>
           <p className="austin__bubble" key={note} role="status" aria-live={reduced ? "polite" : "off"}>
             {NOTES[note]}
           </p>

@@ -1,11 +1,14 @@
-/* Palette, paper, and the base element rules.
+/* Palette, rail, type scale, and the base element rules.
  *
- * The page is a sheet of paper with a Mac panel floating over it, so the
- * colours divide the same way: warm neutral paper for everything at rest, one
- * ink blue for anything Caret itself does. There is no second accent.
+ * The page is built the way the BaseScanning landing page is (one left edge,
+ * two typefaces, one display weight, one flat button shape, one section gap),
+ * in Caret's own paper, ink and accent. The kgu.one design handoff that asked
+ * for this is HANDOFF-caret.md; its numbers are BaseScanning's styles.css.
  *
- * Every contrast figure below was measured by tools/measure-contrast.py
- * against the paper, not estimated from the hex values.
+ * Contrast figures are WCAG ratios computed from the hex values against the
+ * surface named. The page paints these colours flat, with no gradients or
+ * translucent layers under text, so the computed ratio is what the screen
+ * shows.
  */
 
 @layer base {
@@ -13,26 +16,29 @@
     /* Paper and ink. */
     --color-background: #f9f7f2;
     --color-surface: #f9f7f2;
-    --color-surface-alt: #f2f0ea;
+    /* The pale surface for secondary controls and the key legend. Ink holds
+       15.14:1 on it and the secondary text 7.68:1; the tertiary text drops to
+       4.41:1, so tertiary text never sits on it. */
+    --color-wash: #efede6;
+    --color-wash-deep: #e6e3da;
 
     --color-text-primary: #17181c; /* 16.57:1 */
     --color-text-secondary: #47494f; /* 8.40:1 */
     --color-text-tertiary: #6b6d75; /* 4.82:1 on paper, 4.87:1 on the panel */
 
-    /* The one accent. Used flat for links and as the glass fallback. */
+    /* The one accent, painted flat: the primary button, links on hover, the
+       headline's italic and the focus ring. */
     --color-accent: #23418f; /* 8.82:1 */
-    --color-accent-foreground: #f9f7f2;
+    --color-accent-hover: #1a3270; /* paper text on it: 11.31:1 */
+    --color-accent-foreground: #f9f7f2; /* 8.82:1 on the accent */
     --color-accent-soft: rgba(35, 65, 143, 0.1);
 
     --color-border: rgba(23, 24, 28, 0.12);
     --color-border-strong: rgba(23, 24, 28, 0.22);
 
-    /* WCAG 2.4.11 wants 3:1 against everything the ring touches, and a
-       translucent ring is measured after compositing rather than at its own
-       value. This one is opaque, 8.82:1 on paper. Against the lit corner of a
-       button face it is only about 2.1:1, which is why every ring in this file
-       keeps an outline-offset: the colour it has to clear is the paper beside
-       the control, not the control. */
+    /* Opaque so it measures the same everywhere: 8.82:1 on paper, 7.57:1 on
+       the deep wash. The 4px offset puts it on the paper beside a control
+       rather than on the control's own face. */
     --color-ring: #23418f;
 
     /* Demo surfaces. The highlighter marks the sentence the preview was built
@@ -43,15 +49,10 @@
       rgba(35, 65, 143, 0.14) 0 3px,
       transparent 3px 8px
     );
-    --key-face: #fcfbf8;
-    --key-edge: rgba(23, 24, 28, 0.18);
-    --key-shadow: 0 1px 0 rgba(23, 24, 28, 0.25);
 
-    /* Type. Newsreader carries display sizes only; the glass ramp below was
-       tuned against its italic stroke contrast, so the pairing is load-bearing
-       rather than decorative. Schibsted is every running word. The mono is the
-       Mac's own, which is the point wherever a keycap or a clock time
-       appears. */
+    /* Type. Newsreader is the display face, for h1 and h2 only, at one weight.
+       Schibsted Grotesk is every other word on the page. The mono is the
+       Mac's own, used only where the page depicts a keycap or a clock time. */
     --font-serif: "Newsreader Variable", Georgia, "Times New Roman", serif;
     --font-body: "Schibsted Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
@@ -93,33 +94,29 @@
       -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial,
       sans-serif;
 
-    --header-height: 76px;
-    --page-max-width: 1200px;
-    --page-gutter: clamp(1.25rem, 5vw, 4rem);
-    --section-gap: clamp(4rem, 11vw, 8rem);
+    /* One rail. Logo, headline, text, buttons and every section heading start
+       on its left edge. BaseScanning's values: 1280 wide with 56px gutters,
+       36px at 980 and below, 20px at 760 and below. */
+    --page-max-width: 1280px;
+    --page-gutter: 56px;
+    /* One gap between sections, so the page keeps a single rhythm. */
+    --section: 112px;
 
-    /* One entrance curve for the whole page: strong deceleration, so things
-       arrive fast and settle rather than drifting in. */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  }
 
-    /* Paper stock. Ochre falls from the top left and ink rises from the bottom
-       right, following the reading diagonal, both under 6% alpha so they read
-       as uneven stock rather than as a gradient. */
-    --paper-wash-1: radial-gradient(
-      78rem 58rem at 6% -8%,
-      rgba(138, 123, 66, 0.055),
-      transparent 62%
-    );
-    --paper-wash-2: radial-gradient(
-      72rem 68rem at 104% 92%,
-      rgba(35, 65, 143, 0.05),
-      transparent 60%
-    );
-    /* feTurbulence rasterises once at 160px and repeats, so the cost is one
-       small bitmap rather than a filter running over the viewport. The rect's
-       own opacity is the strength of the layer: 3% dark specks, which is tooth
-       you feel and do not see. */
-    --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");
+  @media (max-width: 980px) {
+    :root {
+      --page-gutter: 36px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    :root {
+      --page-gutter: 20px;
+      --section: 80px;
+    }
   }
 
   *,
@@ -128,17 +125,14 @@
     box-sizing: border-box;
   }
 
+  /* No `scrollbar-gutter: stable`: on a system that always shows scrollbars it
+     reserved a second gutter, and the full-bleed legend band stopped 15px short
+     of the window's right edge. */
   html {
     background-color: var(--color-background);
     color-scheme: light;
-    scrollbar-gutter: stable;
     -webkit-text-size-adjust: 100%;
-  }
-
-  /* `scroll-padding-top` rather than a margin on each anchor target: the
-     header is sticky and would otherwise cover whatever a link jumps to. */
-  html {
-    scroll-padding-top: calc(var(--header-height) + 1rem);
+    scroll-padding-top: 24px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -147,33 +141,17 @@
     }
   }
 
-  /* The page colour sits on html alone. body::before paints the paper at
-     z-index -1, and a negative-z pseudo-element goes behind its own parent's
-     background but not behind an ancestor's, so an opaque colour on body would
-     bury the layer completely. */
   body {
     margin: 0;
     min-height: 100%;
     color: var(--color-text-secondary);
     font-family: var(--font-body);
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.6;
     overflow-x: hidden;
+    overflow-wrap: break-word;
+    font-synthesis: none;
     -webkit-font-smoothing: antialiased;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image: var(--paper-grain), var(--paper-wash-1), var(--paper-wash-2);
-    background-repeat: repeat, no-repeat, no-repeat;
-    background-size:
-      160px 160px,
-      auto,
-      auto;
   }
 
   h1,
@@ -182,6 +160,28 @@
     margin: 0;
     color: var(--color-text-primary);
     font-weight: 500;
+  }
+
+  /* The display scale. BaseScanning's sizes; the tracking is looser than its
+     -0.034em because Newsreader's serifs close up under tight tracking, and
+     -0.02em was this page's measured choice for the serif at 72px. */
+  h1,
+  h2 {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(42px, 4.8vw, 66px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: clamp(30px, 3vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.014em;
   }
 
   p {
@@ -198,21 +198,24 @@
     color: inherit;
   }
 
+  button,
+  a,
+  label {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
   ::selection {
     background: var(--color-accent-soft);
     color: var(--color-text-primary);
   }
 
   /* One ring for everything, so no control can be given focus styling and
-     then be forgotten. The offset is what makes it legible: the ring is only
-     about 2.1:1 against the lit corner of a button face, so it has to clear
-     the control and land on paper, where it measures 8.8:1.
-
-     No border-radius here. A modern outline already follows the element's own
-     corners, and setting one would square off the buttons on focus. */
+     then be forgotten. No border-radius here: a modern outline already follows
+     the element's own corners, so capsules get capsule rings. */
   :focus-visible {
-    outline: 2px solid var(--color-ring);
-    outline-offset: 3px;
+    outline: 3px solid var(--color-ring);
+    outline-offset: 4px;
   }
 }
 
@@ -234,47 +237,107 @@
     white-space: nowrap;
   }
 
-  .tabular {
-    font-variant-numeric: tabular-nums;
-  }
-
   .mono {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
 
-  .link-underline {
-    text-decoration: underline;
-    text-decoration-color: var(--color-border-strong);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
-    transition:
-      text-decoration-color 0.2s ease,
-      color 0.2s ease;
-  }
+  /* ----------------------------------------------------------- actions
+     One shape for every action on the page, flat: a 54px accent capsule for
+     the main action, a 44px pale capsule for the rest, and underlined text
+     links. Hover only changes colour, and only where a real pointer can hover.
 
-  .link-underline:hover,
-  .link-underline:focus-visible {
-    color: var(--color-accent);
-    text-decoration-color: var(--color-accent);
-  }
+     A press scales to 0.97 over 140ms and springs back over 100ms. A key press
+     (Space or Enter on a focus-visible control) does not scale: keyboard
+     actions get their result without motion. */
 
-  /* A real key, not a styled span: the cap is the affordance, so it carries a
-     face, an edge, and a contact shadow like the buttons do. */
-  .key {
+  .button,
+  .control {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 1.5rem;
-    padding: 0.1rem 0.35rem;
-    border: 1px solid var(--key-edge);
-    border-radius: var(--radius-sm);
-    background: var(--key-face);
-    box-shadow: var(--key-shadow);
-    color: var(--color-text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    line-height: 1.4;
+    gap: 10px;
+    border: 0;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      transform 100ms var(--ease-out),
+      background-color 160ms ease;
+  }
+
+  .button {
+    min-height: 54px;
+    padding: 0 26px;
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
+    font-size: 1rem;
+  }
+
+  .control {
+    min-height: 44px;
+    padding: 0 18px;
+    background: var(--color-wash);
+    color: var(--color-text-primary);
+    font-size: 0.9375rem;
+  }
+
+  .button svg,
+  .control svg {
+    flex: none;
+  }
+
+  .button:active:not(:focus-visible),
+  .control:active:not(:focus-visible) {
+    transform: scale(0.97);
+    transition-duration: 140ms, 160ms;
+  }
+
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-text-primary);
+    font-size: 0.9375rem;
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    text-decoration-color: rgba(23, 24, 28, 0.25);
+    cursor: pointer;
+    transition: text-decoration-color 160ms ease;
+  }
+
+  /* The same underline for links that sit inside running text, where a 44px
+     box would break the line. */
+  .link-underline {
+    color: var(--color-text-primary);
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    text-decoration-color: rgba(23, 24, 28, 0.25);
+    transition: text-decoration-color 160ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .button:hover {
+      background: var(--color-accent-hover);
+    }
+
+    .control:hover {
+      background: var(--color-wash-deep);
+    }
+
+    .text-link:hover,
+    .link-underline:hover {
+      text-decoration-color: var(--color-accent);
+    }
   }
 
   .section-shell {
@@ -282,28 +345,18 @@
     isolation: isolate;
   }
 
-  /* The kicker above every section heading. Mono and uppercase, led by the
-     product's own sparkle: the recurring mark is the thing that ties the
-     editorial page to the UI it is describing. */
-  .kicker {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-text-tertiary);
-  }
-
-  .kicker svg {
-    flex-shrink: 0;
-    color: var(--caret-blue);
-  }
-
+  /* Reduced motion: colour changes land at once and a press does not scale. */
   @media (prefers-reduced-motion: reduce) {
+    .button,
+    .control,
+    .text-link,
     .link-underline {
       transition: none;
+    }
+
+    .button:active:not(:focus-visible),
+    .control:active:not(:focus-visible) {
+      transform: none;
     }
   }
 }
