@@ -118,8 +118,11 @@ function getFreePort() {
 /** Start `vite preview` on the given port and wait until it answers. */
 async function startPreview(port) {
   const child = spawn(
-    "npx",
-    ["vite", "preview", "--host", "127.0.0.1", "--port", String(port), "--strictPort"],
+    process.execPath,
+    // Spawn vite directly: going through npx/npm leaves vite as a
+    // grandchild, so preview.kill() only SIGTERMs the wrapper and vite
+    // keeps the stdio pipes open — node then hangs after writing results.
+    [resolve(root, "node_modules/vite/bin/vite.js"), "preview", "--host", "127.0.0.1", "--port", String(port), "--strictPort"],
     { cwd: root, stdio: ["ignore", "pipe", "pipe"] },
   );
   let output = "";
@@ -332,7 +335,12 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+// Exit explicitly once results are flushed: lingering handles (a browser
+// or server child that outlived its kill) must not hang the harness.
+main().then(
+  () => process.exit(0),
+  (error) => {
+    console.error(error);
+    process.exit(1);
+  },
+);
