@@ -15,8 +15,42 @@
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#f9f7f2" />
+    <!-- Share metadata. Copy is verbatim from the page: the <title>, the h1
+         and the hero standfirst — no new claims. og:image and canonical are
+         root-relative because no production domain is established yet; every
+         relative URL above resolves against whatever host serves the page. -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <meta property="og:title" content="Caret: an assistant the size of an asterisk" />
+    <meta
+      property="og:description"
+      content="A native Mac assistant that lives beside your cursor. It finishes the sentence you are typing, or offers the next step from the thread you are reading. Tab accepts, and nothing runs before you have seen what it will do."
+    />
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="An assistant the size of an asterisk. A native Mac assistant that lives beside your cursor. It finishes the sentence you are typing, or offers the next step from the thread you are reading. Tab accepts, and nothing runs before you have seen what it will do."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- vite-ignore: without it vite resolves href="/" as a build asset and
+         fails, because the site root is a directory, not a file. -->
+    <link rel="canonical" href="/" vite-ignore />
   </head>
   <body>
+    <noscript>
+      <!-- Without JavaScript nothing renders into #root. This fallback is the
+           page's own first screen - the h1 and the standfirst verbatim from
+           Hero.tsx and the one external link (href pinned to REPO_URL in
+           src/lib/site.ts) - in the token colours from src/styles/tokens.css:
+           paper #f9f7f2, ink #17181c, accent #23418f. -->
+      <div style="background:#f9f7f2;color:#17181c;min-height:100vh;padding:48px 24px;font-family:'Schibsted Grotesk Variable','Helvetica Neue',Arial,sans-serif;">
+        <h1 style="font-family:'Newsreader Variable',Georgia,'Times New Roman',serif;margin:0 0 16px;max-width:20ch;">An assistant the size of an asterisk.</h1>
+        <p style="margin:0 0 24px;max-width:52ch;line-height:1.6;">A native Mac assistant that lives beside your cursor. It finishes the sentence you are typing, or offers the next step from the thread you are reading. Tab accepts, and nothing runs before you have seen what it will do.</p>
+        <a style="color:#23418f;" href="https://github.com/theodorexli/hackathon-2026-09-19">See the code</a>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
