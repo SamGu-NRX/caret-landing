@@ -53,7 +53,14 @@ function waitForPort(port, timeoutMs = 30000) {
   });
 }
 
-const preview = spawn("npm", ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(PORT), "--strictPort"], { stdio: ["ignore", "pipe", "pipe"] });
+/* Build first: the header contract says the check measures the CURRENT
+   source, and a stale dist silently re-reports yesterday's failures. */
+const build = spawn("npm", ["run", "build"], { stdio: ["ignore", "pipe", "pipe"] });
+build.stdout.on("data", () => {});
+build.stderr.on("data", () => {});
+build.on("error", () => {});
+await new Promise((resolve, reject) => build.on("exit", (code) => (code === 0 ? resolve() : reject(new Error(`build failed with exit ${code}`)))));
+const preview = spawn("npm", ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(PORT), "--strictPort"], { stdio: ["ignore", "pipe", "pipe"], detached: true });
 preview.stdout.on("data", () => {});
 preview.stderr.on("data", () => {});
 preview.on("error", () => {});
@@ -188,27 +195,45 @@ async function workflowFlow(page, w) {
     await shot(page, w, `4${i}-wf${i}-start`);
     /* Drive to the preview-card state by tapping whatever control the demo
        exposes: menu row > cluster sparkle > text-select > primary Go. The
-       preview cards are the interactive surface the audit must see. */
-    let taps = 0;
-    for (; taps < 6; taps++) {
-      if (await wf.locator(".wf-card").first().isVisible().catch(() => false)) break;
-      const row = wf.locator(".cu-menu__row").first();
-      if (await row.isVisible().catch(() => false)) { await row.tap(); }
-      else {
-        const sparkle = wf.locator(".cu-cluster__sparkle, .cu-sparkle").first();
-        const select = wf.locator(".notes__select").first();
-        const go = wf.locator(".wf__go").first();
-        if (await sparkle.isVisible().catch(() => false)) await sparkle.tap();
-        else if (await select.isVisible().catch(() => false)) await select.tap();
-        else if (await go.isVisible().catch(() => false)) await go.tap();
-        else break;
+       preview cards are the interactive surface the audit must see. Demos
+       auto-advance on visibility and can race past the card state, so a
+       failed drive is reset ("Start over") and redriven once. */
+    const drive = async () => {
+      let taps = 0;
+      for (; taps < 6; taps++) {
+        if (await wf.locator(".wf-card").first().isVisible().catch(() => false)) break;
+        const row = wf.locator(".cu-menu__row").first();
+        if (await row.isVisible().catch(() => false)) { await row.tap(); }
+        else {
+          const sparkle = wf.locator(".cu-cluster__sparkle, .cu-sparkle").first();
+          const select = wf.locator(".notes__select").first();
+          const go = wf.locator(".wf__go").first();
+          if (await sparkle.isVisible().catch(() => false)) await sparkle.tap();
+          else if (await select.isVisible().catch(() => false)) await select.tap();
+          else if (await go.isVisible().catch(() => false)) await go.tap();
+          else break;
+        }
+        await page.waitForTimeout(SETTLE);
+        await wf.scrollIntoViewIfNeeded();
       }
-      await page.waitForTimeout(SETTLE);
-      await wf.scrollIntoViewIfNeeded();
+      return taps;
+    };
+    let taps = await drive();
+    let cardUp = await wf.locator(".wf-card").first().isVisible().catch(() => false);
+    let attempts = 1;
+    if (!cardUp) {
+      const quiet2 = wf.locator(".wf__quiet").first();
+      if (await quiet2.isVisible().catch(() => false)) {
+        await quiet2.tap();
+        await page.waitForTimeout(SETTLE);
+        await wf.scrollIntoViewIfNeeded();
+      }
+      taps = await drive();
+      cardUp = await wf.locator(".wf-card").first().isVisible().catch(() => false);
+      attempts = 2;
     }
     await shot(page, w, `4${i}-wf${i}-card`);
-    const cardUp = await wf.locator(".wf-card").first().isVisible().catch(() => false);
-    report.flows.push({ width: w, flow: `workflow-${i}`, pass: cardUp, taps });
+    report.flows.push({ width: w, flow: `workflow-${i}`, pass: cardUp, taps, attempts });
     if (!cardUp) fail(`workflow-${i}@w${w}`, { reason: "preview card not visible after tapping the demo controls" });
     driven++;
     await hscroll(page, w, `wf${i}`);
@@ -242,7 +267,11 @@ try {
 } finally {
   // exit fix: the vite preview child's stdio pipes otherwise keep the event
   // loop open forever; give it a moment to drain, then force the exit.
-  try { preview.kill(); } catch {}
+  /* preview.kill() alone signals only the npm wrapper and orphans the vite
+     grandchild, which keeps port 4179 bound after the check exits - kill
+     the whole detached process group instead. */
+  try { if (preview.pid) process.kill(-preview.pid, "SIGTERM"); } catch {}
   await Promise.race([new Promise((r) => preview.once("exit", r)), sleep(2000)]);
+  try { if (preview.pid) process.kill(-preview.pid, "SIGKILL"); } catch {}
   process.exit(process.exitCode ?? 0);
 }
