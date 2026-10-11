@@ -215,7 +215,10 @@ async function measureRun(browser, viewport, port) {
  * Runs in its own browser (a stalled capture once hung the measurement
  * browser) with prefers-reduced-motion: reduce and animations disabled, so
  * the capture is deterministic: the Austin section's note bubble stops
- * rotating, and infinite animations freeze at their initial state. Applied
+ * rotating, and infinite animations freeze at their initial state. The
+ * capture also awaits document.fonts.ready, so text is never caught
+ * mid webfont swap (a fallback-font render changes text wrap and
+ * antialiasing without changing layout heights). Applied
  * identically to the before and after screenshots, so the pixel diff stays
  * a fair comparison. Every step has a hard timeout — a stall must fail
  * loudly, not hang the harness. */
@@ -248,6 +251,11 @@ async function screenshotPage(browser, viewport, port, path) {
       ),
       30_000,
       "image decode",
+    );
+    await withTimeout(
+      page.evaluate(() => document.fonts.ready.then(() => document.fonts.status)),
+      30_000,
+      "font ready",
     );
     await page.waitForTimeout(300);
     await withTimeout(page.screenshot({ path, fullPage: true, animations: "disabled" }), 120_000, "screenshot");
