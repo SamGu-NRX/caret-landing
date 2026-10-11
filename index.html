@@ -39,6 +39,18 @@
     <link rel="canonical" href="/" vite-ignore />
   </head>
   <body>
+    <noscript>
+      <!-- Without JavaScript nothing renders into #root. This fallback is the
+           page's own first screen - the h1 and the standfirst verbatim from
+           Hero.tsx and the one external link (href pinned to REPO_URL in
+           src/lib/site.ts) - in the token colours from src/styles/tokens.css:
+           paper #f9f7f2, ink #17181c, accent #23418f. -->
+      <div style="background:#f9f7f2;color:#17181c;min-height:100vh;padding:48px 24px;font-family:'Schibsted Grotesk Variable','Helvetica Neue',Arial,sans-serif;">
+        <h1 style="font-family:'Newsreader Variable',Georgia,'Times New Roman',serif;margin:0 0 16px;max-width:20ch;">An assistant the size of an asterisk.</h1>
+        <p style="margin:0 0 24px;max-width:52ch;line-height:1.6;">A native Mac assistant that lives beside your cursor. It finishes the sentence you are typing, or offers the next step from the thread you are reading. Tab accepts, and nothing runs before you have seen what it will do.</p>
+        <a style="color:#23418f;" href="https://github.com/theodorexli/hackathon-2026-09-19">See the code</a>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
