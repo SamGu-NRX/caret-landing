@@ -7,7 +7,9 @@
 
 import { useEffect, useState } from "react";
 
-const HALL = `${import.meta.env.BASE_URL}art/pershing-hall.png`;
+/* The lossless WebP re-encode of tools/art-src/pershing-hall.png (same
+ * decoded pixels byte for byte; see tools/optimize-images.mjs). */
+const HALL = `${import.meta.env.BASE_URL}art/pershing-hall.webp`;
 const HALL_ALT =
   "Pixel-art illustration of a music hall in Austin used as a one-day hackathon space: a long wooden table of open laptops seen from behind, a small stage with a drum kit under warm bulbs, late orange light through tall windows.";
 
@@ -47,7 +49,7 @@ export function Austin() {
         </p>
 
         <div className="austin__scene">
-          <img className="austin__art" src={HALL} alt={HALL_ALT} loading="lazy" />
+          <img className="austin__art" src={HALL} alt={HALL_ALT} loading="lazy" decoding="async" />
           <p className="austin__bubble" key={note} role="status" aria-live={reduced ? "polite" : "off"}>
             {NOTES[note]}
           </p>

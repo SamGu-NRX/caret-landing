@@ -1,4 +1,6 @@
-// Writes public/art/austin-dusk-ink.webp, the ink print of the wallpaper that every desktop after the hero uses.
+// Reads the colour original from tools/art-src/ (moved there unchanged by the
+// weight task; tools/optimize-images.mjs re-encodes its output from the same
+// pixels). Writes public/art/austin-dusk-ink.webp, the ink print of the wallpaper that every desktop after the hero uses.
 //
 // Each pixel's luminance is mapped onto a ramp from #1b2750 (ink-blue night) to #d9d6ea (pale lavender), with
 // gamma 0.8 to open the shadows a little. Nothing is resampled, so the pixel-art dithering stays crisp; the page
@@ -11,7 +13,7 @@ import { fileURLToPath } from "node:url";
 
 const sharp = (await import(process.env.SHARP_MODULE ?? "sharp")).default;
 const root = fileURLToPath(new URL("..", import.meta.url));
-const SRC = `${root}public/art/austin-dusk.png`;
+const SRC = `${root}tools/art-src/austin-dusk.png`;
 const OUT = `${root}public/art/austin-dusk-ink.webp`;
 const DARK = "#1b2750";
 const LIGHT = "#d9d6ea";

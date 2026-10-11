@@ -1,0 +1,21 @@
+{
+  "beforeStem": "weight-before",
+  "afterStem": "weight-after",
+  "widths": {
+    "390": {
+      "before": "weight-before-390.png",
+      "after": "weight-after-390.png",
+      "dimensions": "390x7317x3 vs 390x7317x3",
+      "identical": true,
+      "differingPixels": 0
+    },
+    "1440": {
+      "before": "weight-before-1440.png",
+      "after": "weight-after-1440.png",
+      "dimensions": "1440x5729x3 vs 1440x5729x3",
+      "identical": true,
+      "differingPixels": 0
+    }
+  },
+  "allIdentical": true
+}

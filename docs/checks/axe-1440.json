@@ -13,7 +13,7 @@
     "orientationAngle": 0,
     "orientationType": "landscape-primary"
   },
-  "timestamp": "2026-10-10T19:34:53.039Z",
+  "timestamp": "2026-10-11T00:01:57.160Z",
   "url": "http://localhost:4173/",
   "toolOptions": {
     "reporter": "v1"
@@ -1472,7 +1472,7 @@
             }
           ],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -1593,7 +1593,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -1917,7 +1917,7 @@
           ],
           "none": [],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -2043,7 +2043,7 @@
             }
           ],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -3609,7 +3609,7 @@
             }
           ],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -3735,7 +3735,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -3945,7 +3945,7 @@
             }
           ],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -4507,7 +4507,7 @@
           ],
           "none": [],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -4831,7 +4831,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -9180,7 +9180,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
           "target": [
             "img[loading=\"eager\"]"
           ]
@@ -9206,7 +9206,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#revise > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -9232,7 +9232,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#flight > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -9258,7 +9258,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#calendar > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -9284,7 +9284,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" src=\"./art/pershing-hall....\">",
+          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" decoding=\"async\" src=\"./art/pershing-hall....\">",
           "target": [
             ".austin__art"
           ]
@@ -9315,7 +9315,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
           "target": [
             "img[loading=\"eager\"]"
           ]
@@ -9333,7 +9333,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#revise > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -9351,7 +9351,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#flight > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -9369,7 +9369,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#calendar > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -9387,7 +9387,7 @@
             }
           ],
           "impact": null,
-          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" src=\"./art/pershing-hall....\">",
+          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" decoding=\"async\" src=\"./art/pershing-hall....\">",
           "target": [
             ".austin__art"
           ]
@@ -10654,7 +10654,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
           "target": [
             "img[loading=\"eager\"]"
           ]
@@ -10834,7 +10834,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#revise > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -10888,7 +10888,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#flight > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -10960,7 +10960,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#calendar > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -11014,7 +11014,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" src=\"./art/pershing-hall....\">",
+          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" decoding=\"async\" src=\"./art/pershing-hall....\">",
           "target": [
             ".austin__art"
           ]
@@ -11607,7 +11607,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
           "target": [
             "img[loading=\"eager\"]"
           ]
@@ -13067,7 +13067,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#revise > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -13487,7 +13487,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#flight > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -14007,7 +14007,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+          "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
           "target": [
             "#calendar > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
           ]
@@ -15307,7 +15307,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" src=\"./art/pershing-hall....\">",
+          "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" decoding=\"async\" src=\"./art/pershing-hall....\">",
           "target": [
             ".austin__art"
           ]
@@ -15327,7 +15327,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ]
@@ -16153,7 +16153,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
                   "target": [
                     "img[loading=\"eager\"]"
                   ]
@@ -16191,7 +16191,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
                   "target": [
                     "img[loading=\"eager\"]"
                   ]
@@ -16229,7 +16229,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
                   "target": [
                     "img[loading=\"eager\"]"
                   ]
@@ -16267,7 +16267,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
                   "target": [
                     "img[loading=\"eager\"]"
                   ]
@@ -16305,7 +16305,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.pn...\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
                   "target": [
                     "img[loading=\"eager\"]"
                   ]
@@ -16400,6 +16400,38 @@
             {
               "id": "color-contrast",
               "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.8pt (17px)",
+                "fontWeight": "normal",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img class=\"mac-stage__paper\" alt=\"Pixel-art illustrati...\" width=\"1536\" height=\"1024\" loading=\"eager\" fetchpriority=\"high\" draggable=\"false\" src=\"./art/austin-dusk.we...\">",
+                  "target": [
+                    "img[loading=\"eager\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"hero-try__note\">Type in here. Tab takes the grey text.</span>",
+          "target": [
+            ".hero-try__note"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
                 "messageKey": "nonBmp"
               },
               "relatedNodes": [],
@@ -16435,7 +16467,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
                   "target": [
                     "#revise > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
                   ]
@@ -16473,7 +16505,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
                   "target": [
                     "#flight > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
                   ]
@@ -16511,7 +16543,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art view of Austin across Lady Bird Lake, printed in one ink blue: towers, the Congress Avenue bridge, the Capitol dome, trees in the foreground.\" width=\"1536\" height=\"1024\" loading=\"lazy\" draggable=\"false\" src=\"./art/austin-dusk-ink.webp\">",
+                  "html": "<img class=\"mac-stage__paper\" alt=\"The same pixel-art v...\" width=\"1536\" height=\"1024\" loading=\"lazy\" decoding=\"async\" draggable=\"false\" src=\"./art/austin-dusk-in...\">",
                   "target": [
                     "#calendar > .wf__stage[role=\"group\"] > .wf__desk.mac-stage[data-paper=\"ink\"] > .mac-stage__paper[src$=\"austin-dusk-ink.webp\"][width=\"1536\"]"
                   ]
@@ -16543,13 +16575,13 @@
               },
               "relatedNodes": [
                 {
-                  "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+                  "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
                   "target": [
                     ".austin__bubble"
                   ]
                 },
                 {
-                  "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" src=\"./art/pershing-hall....\">",
+                  "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" decoding=\"async\" src=\"./art/pershing-hall....\">",
                   "target": [
                     ".austin__art"
                   ]
@@ -16562,7 +16594,7 @@
           "all": [],
           "none": [],
           "impact": "serious",
-          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">One asterisk. No second window to go and open.</p>",
+          "html": "<p class=\"austin__bubble\" role=\"status\" aria-live=\"off\">Tab accepts. Nothing sends by itself.</p>",
           "target": [
             ".austin__bubble"
           ],
@@ -16587,7 +16619,7 @@
                   ]
                 },
                 {
-                  "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" src=\"./art/pershing-hall....\">",
+                  "html": "<img class=\"austin__art\" alt=\"Pixel-art illustrati...\" loading=\"lazy\" decoding=\"async\" src=\"./art/pershing-hall....\">",
                   "target": [
                     ".austin__art"
                   ]

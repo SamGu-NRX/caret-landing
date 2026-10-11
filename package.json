@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --noEmit",
     "preview": "vite preview",
-    "check:site": "node tools/check-site.mjs"
+    "check:site": "node tools/check-site.mjs",
+    "check:weight": "node tools/check-weight.mjs",
+    "check:images": "node tools/optimize-images.mjs --verify-only",
+    "check:pixels": "node tools/check-pixels.mjs"
   },
   "dependencies": {
     "@fontsource-variable/newsreader": "^5.3.0",
@@ -24,6 +27,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "playwright": "1.64.0",
+    "sharp": "^0.35.5",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"
   }
