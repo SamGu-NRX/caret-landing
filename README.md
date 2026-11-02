@@ -1,6 +1,6 @@
 # Caret landing page
 
-A one-page static site for [Caret](https://github.com/theodorexli/hackathon-2026-09-19),
+A one-page static site for [Caret](https://github.com/theodorexli/Caret),
 a Mac assistant that proposes a next step from whatever is on your screen and
 waits for you to accept it. This repository is vendored into Caret as a Git
 submodule at `sites/landing`.
@@ -20,7 +20,7 @@ no server, no backend, and no analytics.
 ## What is on the page
 
 Nav, hero, a key legend, a four-step sticky explainer, three workflow stages,
-"Under the hood", "Built at a hackathon in Austin", a closing, and the footer.
+"Under the hood", "Built in Austin", a closing, and the footer.
 The page is a Mac desktop: pixel-art Austin as wallpaper, real-looking app
 windows over it, and the only thing Caret adds to any of them is a 40px blue
 asterisk with a glass strip beside it.
