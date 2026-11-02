@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const HALL = `${import.meta.env.BASE_URL}art/pershing-hall.png`;
 const HALL_ALT =
-  "Pixel-art illustration of a music hall in Austin used as a one-day hackathon space: a long wooden table of open laptops seen from behind, a small stage with a drum kit under warm bulbs, late orange light through tall windows.";
+  "Pixel-art illustration of a music hall in Austin: a long wooden table of open laptops seen from behind, a small stage with a drum kit under warm bulbs, late orange light through tall windows.";
 
 /* Short notes about the build, in the builders' own plain words. Nothing here
    is a quote from anywhere private, and nothing claims a measurement. */
@@ -41,7 +41,7 @@ export function Austin() {
   return (
     <section id="austin" className="section austin section-shell">
       <div className="page-container">
-        <h2 className="editorial-title">Built at a hackathon in Austin.</h2>
+        <h2 className="editorial-title">Built in Austin.</h2>
         <p className="editorial-standfirst austin__lede">
           One day, one room, three workflows.
         </p>
